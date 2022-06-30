@@ -1,3 +1,40 @@
+* {
+  font-family: "Gantari", sans-serif;
+}
+
 body {
   margin: 0;
+  background-color: rgb(71, 64, 53);
+}
+
+nav {
+  background-color: rgb(39, 27, 10);
+  padding-top: 1px;
+}
+
+.title {
+  font-size: 250%;
+  color:blanchedalmond;
+}
+
+.nav--search {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  color: blanchedalmond;
+  padding: 5px;
+}
+
+.nav--search-field {
+  margin-left: 3px;
+  font-weight: bold;
+  color:rgb(39, 34, 27);
+}
+
+.nav--about {
+  margin-left: 10px;
+}
+
+.nav--random {
+margin-left: 10px;
 }
