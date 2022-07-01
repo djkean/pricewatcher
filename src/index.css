@@ -1,5 +1,6 @@
 * {
   font-family: "Gantari", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -37,4 +38,31 @@ nav {
 
 .nav--random {
 margin-left: 10px;
+}
+
+.pricegraph--title {
+  color: blanchedalmond;
+  text-align: center;
+  font-size: 24px;
+  margin: 5px;
+}
+
+.pricegraph--graph {
+  display: flex;
+  margin: auto;
+  width: 600px;
+}
+
+.volumegraph--title {
+  color: blanchedalmond;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.volumegraph--graph {
+  display: flex;
+  margin: auto;
+  width: 600px;
 }
