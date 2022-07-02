@@ -65,4 +65,29 @@ margin-left: 10px;
   display: flex;
   margin: auto;
   width: 600px;
+  padding-bottom: 12px;
+}
+
+.footer--main {
+  display: flex;
+  background-color: rgb(39, 34, 27);
+  color: blanchedalmond;
+  justify-content: center;
+  font-size: 1.2em;
+}
+
+.footer--link {
+  padding-right: 5px;
+}
+
+.footer--link:link {
+  color:rgb(204, 129, 31);
+}
+
+.footer--link:visited {
+  color:rgb(163, 105, 17);
+}
+
+.footer--link:hover {
+  color: rgb(247, 151, 27);
 }
