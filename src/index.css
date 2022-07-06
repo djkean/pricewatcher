@@ -74,6 +74,9 @@ margin-left: 10px;
   color: blanchedalmond;
   justify-content: center;
   font-size: 1.2em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer--link {
@@ -90,4 +93,45 @@ margin-left: 10px;
 
 .footer--link:hover {
   color: rgb(247, 151, 27);
+}
+
+.nav--link {
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.nav--link:link {
+  color:blanchedalmond;
+}
+
+.nav--link:visited {
+  color: blanchedalmond;
+}
+
+.nav--link:hover {
+  color: rgb(197, 180, 155);
+}
+
+.product--list--table{
+  margin: auto;
+  width: 90%;
+  color: blanchedalmond;
+  border: solid black 2px;
+  background-color:rgb(39, 27, 10);
+  border-radius: 9px;
+  padding: 3px;
+}
+
+.product--list--table tbody tr td{
+  text-align: center;
+  background-color: rgb(71, 64, 53);
+}
+
+.page {
+  text-align: center;
+  color: blanchedalmond;
+}
+
+h2 {
+  font-weight: normal;
 }
