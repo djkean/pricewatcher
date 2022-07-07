@@ -13,9 +13,10 @@ nav {
   padding-top: 1px;
 }
 
-.title {
+.nav--title {
   font-size: 250%;
   color:blanchedalmond;
+  text-decoration: none;
 }
 
 .nav--search {
@@ -37,7 +38,7 @@ nav {
 }
 
 .nav--random {
-margin-left: 10px;
+  margin-left: 10px;
 }
 
 .pricegraph--title {
@@ -96,7 +97,7 @@ margin-left: 10px;
 }
 
 .nav--link {
-  margin-left: 5px;
+  margin-left: 10px;
   text-decoration: none;
 }
 
@@ -134,4 +135,10 @@ margin-left: 10px;
 
 h2 {
   font-weight: normal;
+}
+
+#about--section {
+  padding-top: 25px;
+  margin: auto;
+  max-width: 70%;
 }

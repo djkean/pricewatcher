@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 export function Navbar() {
   return (
     <nav>
-      <h1 className="title">OSRS PriceWatcher</h1>
+      <Link className="nav--title" to="/">
+        OSRS PriceWatcher
+      </Link>
       <span className="nav--search">
-        Search
+        Search:
         <input className="nav--search-field" placeholder="Item Name"></input>
         <Link className="nav--link" to="/">
           Home

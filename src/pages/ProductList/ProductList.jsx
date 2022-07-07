@@ -3,8 +3,8 @@ import { Products } from "../../shared/components/ProductList";
 
 export const ProductListPage = () => {
   return (
-    <div className='page'>
-      <h2>Product Lists</h2>
+    <div className="page">
+      <h2>Product List</h2>
       <Products />
     </div>
   );
