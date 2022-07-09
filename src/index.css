@@ -142,3 +142,7 @@ h2 {
   margin: auto;
   max-width: 70%;
 }
+
+.product--list--count {
+  margin-bottom: 8px;
+}
