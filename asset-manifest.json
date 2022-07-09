@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pricewatcher/static/css/main.93dffa4f.css",
+    "main.js": "/pricewatcher/static/js/main.de66c108.js",
+    "index.html": "/pricewatcher/index.html",
+    "main.93dffa4f.css.map": "/pricewatcher/static/css/main.93dffa4f.css.map",
+    "main.de66c108.js.map": "/pricewatcher/static/js/main.de66c108.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.93dffa4f.css",
+    "static/js/main.de66c108.js"
+  ]
+}
