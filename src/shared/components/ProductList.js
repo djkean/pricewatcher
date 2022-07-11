@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-const catalogueAPI = "https://prices.runescape.wiki/api/v1/osrs/mapping";
-const itemPriceAPI = "https://prices.runescape.wiki/api/v1/osrs/latest";
+export const catalogueAPI = "https://prices.runescape.wiki/api/v1/osrs/mapping";
+export const itemPriceAPI = "https://prices.runescape.wiki/api/v1/osrs/latest";
 const itemImage = (itemID) =>
   `https://oldschool.runescape.wiki/images/a/a2/${itemID}`;
 
@@ -47,7 +47,11 @@ export function Products() {
                   <img src={itemImage(item.icon.replace(/ /g, "_"))} />
                 </td>
                 <td>
-                  <Link key={item.id} to={"/Product/" + item.id}>
+                  <Link
+                    key={item.id}
+                    to={"/Product/" + item.id}
+                    state={{ data: item }}
+                  >
                     {item.name}
                   </Link>
                 </td>
