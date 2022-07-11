@@ -7,6 +7,7 @@ import { Footer } from "./shared/components/Footer";
 import { ProductListPage } from "./pages/ProductList";
 import { HomePage } from "./pages/Home";
 import { AboutPage } from "./pages/About";
+import { Product } from "./shared/components/Product";
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/ProductList" element={<ProductListPage />} />
         <Route path="/About" element={<AboutPage />} />
+        <Route path="/Product/:id" element={<Product />} />
       </Routes>
       <Footer />
     </BrowserRouter>

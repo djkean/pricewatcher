@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const catalogueAPI = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 const itemPriceAPI = "https://prices.runescape.wiki/api/v1/osrs/latest";
@@ -45,7 +46,11 @@ export function Products() {
                 <td>
                   <img src={itemImage(item.icon.replace(/ /g, "_"))} />
                 </td>
-                <td>{item.name}</td>
+                <td>
+                  <Link key={item.id} to={"/Product/" + item.id}>
+                    {item.name}
+                  </Link>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
