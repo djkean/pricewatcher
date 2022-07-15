@@ -9,9 +9,9 @@ export function Product() {
   const productID = routeParams.id;
   const itemData = useLocation();
   const [price, setPrice] = useState([]);
-  const fetchItemPrice = async () => {
+  const fetchItemPrice = () => {
     try {
-      return await fetch(itemPriceAPI + "?id=" + itemData.state?.data.id)
+      fetch(itemPriceAPI + "?id=" + itemData.state?.data.id)
         .then((response) => response.json())
         .then((price) => setPrice(price?.data[0]));
     } catch (error) {

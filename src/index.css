@@ -159,11 +159,17 @@ h2 {
 .product--head {
   display: flex;
   justify-content: center;
-  padding-top: 5px;
+}
+
+.product--image {
+  margin-top: 28px;
+  margin-right: 10px;
 }
 
 .product--id {
   font-size: 80%;
+  margin-top: 28px;
+  margin-left: 5px;
 }
 
 .product--buylimit {
@@ -174,6 +180,10 @@ h2 {
   padding-top: 50px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.product--examine--text {
+  text-decoration: wavy;
 }
 
 #low--stats {
