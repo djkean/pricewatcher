@@ -10,7 +10,7 @@ body {
 
 nav {
   background-color: rgb(39, 27, 10);
-  padding-top: 1px;
+  padding-top: 0.06em;
 }
 
 .nav--title {
@@ -22,31 +22,31 @@ nav {
 .nav--search {
   display: flex;
   flex-direction: row;
-  font-size: 20px;
+  font-size: 1.25em;
   color: blanchedalmond;
-  padding: 5px;
+  padding: 0.3em;
 }
 
 .nav--search-field {
-  margin-left: 3px;
+  margin-left: 0.2em;
   font-weight: bold;
   color:rgb(39, 34, 27);
 }
 
 .nav--about {
-  margin-left: 10px;
+  margin-left: 0.6em;
 }
 
 .nav--random {
-  margin-left: 10px;
+  margin-left: 0.6em;
 }
 
 .pricegraph--title {
   color: blanchedalmond;
   text-align: center;
-  font-size: 24px;
-  margin: 5px;
-  padding-top: 80px;
+  font-size: 1.5em;
+  margin: 0.3em;
+  padding-top: 5em;
 }
 
 .pricegraph--graph {
@@ -58,17 +58,17 @@ nav {
 .volumegraph--title {
   color: blanchedalmond;
   text-align: center;
-  font-size: 24px;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  padding-top: 30px;
+  font-size: 1.5em;
+  margin-top: 1.5em;
+  margin-bottom: 0.25em;
+  padding-top: 1.8em;
 }
 
 .volumegraph--graph {
   display: flex;
   margin: auto;
   width: 600px;
-  padding-bottom: 12px;
+  padding-bottom: 0.85em;
 }
 
 .footer--main {
@@ -79,12 +79,12 @@ nav {
   font-size: 1.2em;
   bottom: 0;
   width: 100%;
-  margin-top: 20px;
-  padding: 1px;
+  margin-top: 1.25em;
+  padding: 0.06em;
 }
 
 .footer--link {
-  padding-right: 5px;
+  padding-right: 0.25em;
 }
 
 .footer--link:link {
@@ -100,7 +100,7 @@ nav {
 }
 
 .nav--link {
-  margin-left: 10px;
+  margin-left: 0.6em;
   text-decoration: none;
 }
 
@@ -120,10 +120,10 @@ nav {
   margin: auto;
   width: 90%;
   color: blanchedalmond;
-  border: solid black 2px;
+  border: solid black 0.125em;
   background-color:rgb(39, 27, 10);
-  border-radius: 9px;
-  padding: 3px;
+  border-radius: 0.55em;
+  padding: 0.2em;
 }
 
 .product--list--table tbody tr td{
@@ -142,13 +142,13 @@ h2 {
 }
 
 #about--section {
-  padding-top: 25px;
+  padding-top: 1.5em;
   margin: auto;
   max-width: 70%;
 }
 
 .product--list--count {
-  margin-bottom: 8px;
+  margin-bottom: 0.5em;
 }
 
 .product {
@@ -162,24 +162,24 @@ h2 {
 }
 
 .product--image {
-  margin-top: 28px;
-  margin-right: 10px;
+  margin-top: 1.6em;
+  margin-right: 0.7em;
 }
 
 .product--id {
   font-size: 80%;
-  margin-top: 28px;
-  margin-left: 5px;
+  margin-top: 2.22em;
+  margin-left: 0.35em;
 }
 
 .product--buylimit {
-  padding-right: 50px;
+  padding-right: 3.7em;
 }
 
 .product--stats {
-  padding-top: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 3.7em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
 }
 
 .product--examine--text {
@@ -187,5 +187,5 @@ h2 {
 }
 
 #low--stats {
-  padding-top: 35px;
+  padding-top: 2.3em;
 }
