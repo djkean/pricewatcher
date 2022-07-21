@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const catalogueAPI = "https://prices.runescape.wiki/api/v1/osrs/mapping";
@@ -44,7 +44,10 @@ export function Products() {
             catalogue.map((item) => (
               <tr>
                 <td>
-                  <img src={itemImage(item.icon.replace(/ /g, "_"))} />
+                  <img
+                    src={itemImage(item.icon.replace(/ /g, "_"))}
+                    alt="an item from oldschool runescape"
+                  />
                 </td>
                 <td>
                   <Link

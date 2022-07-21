@@ -162,8 +162,10 @@ h2 {
 }
 
 .product--image {
-  margin-top: 1.6em;
+  margin-top: 1.3em;
   margin-right: 0.7em;
+  width: 2em;
+  height: 1.75em;
 }
 
 .product--id {
@@ -188,4 +190,10 @@ h2 {
 
 #low--stats {
   padding-top: 2.3em;
+}
+
+.graph--data {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6em;
 }
