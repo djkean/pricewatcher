@@ -9,7 +9,7 @@ body {
 }
 
 nav {
-  background-color: rgb(39, 27, 10);
+  background-color: rgb(41, 28, 10);
   padding-top: 0.06em;
 }
 
@@ -159,13 +159,18 @@ h2 {
 .product--head {
   display: flex;
   justify-content: center;
+  gap: 0.7em;
+}
+
+.product--head div {
+  display: flex;
+  flex-direction: row;
 }
 
 .product--image {
-  margin-top: 1.3em;
-  margin-right: 0.7em;
-  width: 2em;
-  height: 1.75em;
+  align-self: center;
+ /* width: 2em;
+  height: 1.75em; */
 }
 
 .product--id {

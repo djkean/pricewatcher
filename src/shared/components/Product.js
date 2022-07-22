@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { itemPriceAPI } from "./ProductList";
-import { RenderChart, PriceGraph } from "./PriceGraph";
+import { RenderChart } from "./PriceGraph";
 import { VolumeGraph } from "./VolumeGraph";
-
-const itemImage = (itemID) =>
-  `https://oldschool.runescape.wiki/images/a/a2/${itemID}`;
+import { itemImage } from "../../API/API.js";
+// import { itemVolumeUrl } from "../../API";
 
 export function Product() {
   const routeParams = useParams();
   const productID = routeParams.id;
   const itemData = useLocation();
-  const [price, setPrice] = useState([]);
+  const [apiResults, setApiResults] = useState({
+    priceData: null,
+    volumeData: null,
+  });
 
   const fetchItemPrice = () => {
     try {
       fetch(itemPriceAPI + "?id=" + itemData.state?.data.id)
         .then((response) => response.json())
-        .then((price) => setPrice(price?.data[itemData?.state?.data?.id]));
+        .then((itemApiData) => {
+          console.log(itemApiData);
+          setApiResults((apiResults) => ({
+            ...apiResults,
+            priceData: itemApiData?.data[itemData?.state?.data?.id],
+          }));
+        });
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +36,7 @@ export function Product() {
   }, []);
 
   console.log(itemData);
-  console.log(price);
+  console.log(apiResults);
   console.log(itemImage(itemData.state.data.icon.replace(/ /g, "_")));
   return (
     <article className="product">
@@ -39,8 +47,10 @@ export function Product() {
             className="product--image"
             alt="something from oldschool runescape"
           />
-          <h2 className="product--name">{itemData.state?.data.name}</h2>
-          <span className="product--id"> - {productID}</span>
+          <div>
+            <h2 className="product--name">{itemData.state?.data.name}</h2>
+            <span className="product--id"> - {productID}</span>
+          </div>
         </div>
         <span className="product--buylimit">
           Buy Limit: {itemData.state?.data.limit}
@@ -53,10 +63,13 @@ export function Product() {
         </span>
       </section>
       <section className="product--stats">
-        <span className="product--stats">High Price: {price?.high}</span>
-        <span className="product--stats">Low Price: {price?.low}</span>
+        <span className="product--stats">
+          High Price: {apiResults?.priceData?.high}
+        </span>
+        <span className="product--stats">
+          Low Price: {apiResults?.priceData?.low}
+        </span>
         <RenderChart />
-        <PriceGraph />
         <VolumeGraph />
       </section>
     </article>
