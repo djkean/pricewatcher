@@ -3,19 +3,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  --baseText: #ffebcd;
+  --fieldText: #27221b;
+  --baseBackground: #474035;
+  --backgroundDark: #291c0a;
+  --baseFooterLink: #cc811f;
+  --visitedFooterLink: #a36911;
+  --hoverFooterLink: #f7971b;
+  --navHoverLink: #c5b49b;
+  --tableBackground: #271b0a;
+}
+
 body {
   margin: 0;
-  background-color: rgb(71, 64, 53);
+  background-color: var(--baseBackground);
 }
 
 nav {
-  background-color: rgb(41, 28, 10);
+  background-color: var(--backgroundDark);
   padding-top: 0.06em;
 }
 
 .nav--title {
   font-size: 250%;
-  color:blanchedalmond;
+  color: var(--baseText);
   text-decoration: none;
 }
 
@@ -23,14 +35,14 @@ nav {
   display: flex;
   flex-direction: row;
   font-size: 1.25em;
-  color: blanchedalmond;
+  color: var(--baseText);
   padding: 0.3em;
 }
 
 .nav--search-field {
   margin-left: 0.2em;
   font-weight: bold;
-  color:rgb(39, 34, 27);
+  color: var(--fieldText);
 }
 
 .nav--about {
@@ -42,7 +54,7 @@ nav {
 }
 
 .pricegraph--title {
-  color: blanchedalmond;
+  color: var(--baseText);
   text-align: center;
   font-size: 1.5em;
   margin: 0.3em;
@@ -56,7 +68,7 @@ nav {
 }
 
 .volumegraph--title {
-  color: blanchedalmond;
+  color: var(--baseText);
   text-align: center;
   font-size: 1.5em;
   margin-top: 1.5em;
@@ -73,8 +85,8 @@ nav {
 
 .footer--main {
   display: flex;
-  background-color: rgb(39, 34, 27);
-  color: blanchedalmond;
+  background-color: var(--fieldText);
+  color: var(--baseText);
   justify-content: center;
   font-size: 1.2em;
   bottom: 0;
@@ -88,15 +100,15 @@ nav {
 }
 
 .footer--link:link {
-  color:rgb(204, 129, 31);
+  color: var(--baseFooterLink);
 }
 
 .footer--link:visited {
-  color:rgb(163, 105, 17);
+  color: var(--visitedFooterLink);
 }
 
 .footer--link:hover {
-  color: rgb(247, 151, 27);
+  color: var(--hoverFooterLink);
 }
 
 .nav--link {
@@ -105,40 +117,40 @@ nav {
 }
 
 .nav--link:link {
-  color:blanchedalmond;
+  color: var(--baseText);
 }
 
 .nav--link:visited {
-  color: blanchedalmond;
+  color: var(--baseText);
 }
 
 .nav--link:hover {
-  color: rgb(197, 180, 155);
+  color: var(--navHoverLink);
 }
 
 .product--list--table{
   margin: auto;
   width: 90%;
-  color: blanchedalmond;
+  color: var(--baseText);
   border: solid black 0.125em;
-  background-color:rgb(39, 27, 10);
+  background-color: var(--tableBackground);
   border-radius: 0.55em;
   padding: 0.2em;
 }
 
 .product--list--table tbody tr td{
   text-align: center;
-  background-color: rgb(71, 64, 53);
+  background-color: var(--baseBackground);
 }
 
 .page {
   text-align: center;
-  color: blanchedalmond;
+  color: var(--baseText);
 }
 
 h2 {
   font-weight: normal;
-  color: blanchedalmond;
+  color: var(--baseText);
 }
 
 #about--section {
@@ -152,7 +164,7 @@ h2 {
 }
 
 .product {
-  color: blanchedalmond;
+  color: var(--baseText);
   text-align: center;
 }
 
