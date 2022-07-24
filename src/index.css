@@ -91,7 +91,7 @@ nav {
   font-size: 1.2em;
   bottom: 0;
   width: 100%;
-  margin-top: 1.25em;
+  margin-top: 1.825em;
   padding: 0.06em;
 }
 
@@ -181,8 +181,6 @@ h2 {
 
 .product--image {
   align-self: center;
- /* width: 2em;
-  height: 1.75em; */
 }
 
 .product--id {

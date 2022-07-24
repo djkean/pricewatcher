@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { itemPriceAPI } from "./ProductList";
 import { RenderChart } from "./PriceGraph";
-import { VolumeGraph } from "./VolumeGraph";
+// import { VolumeGraph } from "./VolumeGraph";
 import { itemImage } from "../../API/API.js";
 // import { itemVolumeUrl } from "../../API";
 
@@ -70,8 +70,9 @@ export function Product() {
           Low Price: {apiResults?.priceData?.low}
         </span>
         <RenderChart />
-        <VolumeGraph />
       </section>
     </article>
   );
 }
+
+//<VolumeGraph />;
