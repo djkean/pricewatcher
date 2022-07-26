@@ -138,6 +138,16 @@ nav {
   padding: 0.2em;
 }
 
+.product--list--table tbody tr td a {
+  color: var(--baseText);
+  text-decoration: none;
+}
+
+.product--list--table tbody tr td a:hover {
+  color: var(--navHoverLink);
+  text-decoration: none;
+}
+
 .product--list--table tbody tr td{
   text-align: center;
   background-color: var(--baseBackground);

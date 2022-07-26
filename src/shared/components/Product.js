@@ -17,7 +17,7 @@ export function Product() {
 
   const fetchItemPrice = () => {
     try {
-      fetch(itemPriceAPI + "?id=" + itemData.state?.data.id)
+      fetch(`${itemPriceAPI}?id=${itemData.state?.data.id}`)
         .then((response) => response.json())
         .then((itemApiData) => {
           console.log(itemApiData);
