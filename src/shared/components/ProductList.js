@@ -35,8 +35,6 @@ export function Products() {
             <th>Item Name</th>
             <th>Price High</th>
             <th>Price Low</th>
-            <th>Volume High</th>
-            <th>Volume Low</th>
           </tr>
         </thead>
         <tbody>
@@ -58,8 +56,6 @@ export function Products() {
                     {item.name}
                   </Link>
                 </td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
               </tr>
