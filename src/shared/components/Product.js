@@ -1,34 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { itemPriceAPI } from "./ProductList";
-import { RenderChart } from "./PriceGraph";
+import { PriceGraph } from "./PriceGraph";
 import { VolumeGraph } from "./VolumeGraph";
-import { itemImage, itemVolumeUrl } from "../../API/API.js";
+import { itemImage, itemTimestampUrl } from "../../API/API.js";
 
 export function Product() {
   const routeParams = useParams();
   const productID = routeParams.id;
   const itemData = useLocation();
   const [apiResults, setApiResults] = useState({
-    priceData: null,
     volumeData: null,
-    itemVolume: null,
+    exchangeData: null,
   });
 
-  const fetchItemVolume = () => {
+  const fetchExchangeData = () => {
     try {
-      fetch(itemVolumeUrl(productID, "5m"))
+      fetch(itemTimestampUrl(productID, "5m"))
         .then((response) => response.json())
-        .then((itemVolumeData) => {
+        .then((itemPriceData) => {
           setApiResults((apiResults) => ({
             ...apiResults,
-            volumeData: itemVolumeData?.data,
-            itemVolume: itemVolumeData?.data.filter(
-              (volumeFilter) =>
-                volumeFilter.timestamp ==
-                Math.max(
-                  ...itemVolumeData.data.map((volume) => volume.timestamp)
-                )
+            volumeData: itemPriceData?.data,
+            exchangeData: itemPriceData?.data.filter(
+              (priceFilter) =>
+                priceFilter.timestamp ===
+                Math.max(...itemPriceData.data.map((price) => price.timestamp))
             )[0],
           }));
         });
@@ -37,29 +33,11 @@ export function Product() {
     }
   };
 
-  const fetchItemPrice = () => {
-    try {
-      fetch(`${itemPriceAPI}?id=${itemData.state?.data.id}`)
-        .then((response) => response.json())
-        .then((itemApiData) => {
-          setApiResults((apiResults) => ({
-            ...apiResults,
-            priceData: itemApiData?.data[itemData?.state?.data?.id],
-          }));
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    fetchItemPrice();
-    fetchItemVolume();
+    fetchExchangeData();
   }, []);
 
-  console.log(itemData);
   console.log(apiResults);
-  console.log(itemImage(itemData.state.data.icon.replace(/ /g, "_")));
   return (
     <article className="product">
       <section className="product--details">
@@ -86,16 +64,18 @@ export function Product() {
       </section>
       <section className="product--stats">
         <span className="product--stats">
-          High Price: {apiResults?.priceData?.high.toLocaleString()}
+          High Price:{" "}
+          {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ?? "n/a"}
           High Volume:
-          {apiResults?.itemVolume?.highPriceVolume}
+          {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
         </span>
         <span className="product--stats">
-          Low Price: {apiResults?.priceData?.low.toLocaleString()}
+          Low Price:{" "}
+          {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "n/a"}
           Low Volume:
-          {apiResults?.itemVolume?.lowPriceVolume}
+          {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
         </span>
-        <RenderChart />
+        <PriceGraph />
         <VolumeGraph />
       </section>
     </article>

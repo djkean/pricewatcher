@@ -23,7 +23,7 @@ const data = [
   { name: "12:00", low: 1500, high: 3000, amt: 2400 },
 ];
 
-export function RenderChart() {
+export function PriceGraph() {
   return (
     <>
       <div className="pricegraph--title">"insert item name" Price</div>

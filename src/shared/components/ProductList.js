@@ -42,10 +42,7 @@ export function Products() {
             catalogue.map((item) => (
               <tr>
                 <td>
-                  <img
-                    src={itemImage(item.icon.replace(/ /g, "_"))}
-                    alt="an item from oldschool runescape"
-                  />
+                  <img src={itemImage(item.icon.replace(/ /g, "_"))} alt=" " />
                 </td>
                 <td>
                   <Link
