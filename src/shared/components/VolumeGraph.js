@@ -1,30 +1,17 @@
 import React from "react";
 import { BarChart, XAxis, YAxis, Tooltip, Bar, Legend } from "recharts";
 
-const data = [
-  { name: "01:00", low: 3, high: 8, amt: 2400 },
-  { name: "02:00", low: 4, high: 11, amt: 2400 },
-  { name: "03:00", low: 6, high: 12, amt: 2400 },
-  { name: "04:00", low: 7, high: 12, amt: 2400 },
-  { name: "05:00", low: 6, high: 14, amt: 2400 },
-  { name: "06:00", low: 9, high: 12, amt: 2400 },
-  { name: "07:00", low: 10, high: 10, amt: 2400 },
-  { name: "08:00", low: 12, high: 8, amt: 2400 },
-  { name: "09:00", low: 10, high: 7, amt: 2400 },
-  { name: "10:00", low: 9, high: 6, amt: 2400 },
-  { name: "11:00", low: 5, high: 3, amt: 2400 },
-  { name: "12:00", low: 3, high: 5, amt: 2400 },
-];
-
-export function VolumeGraph() {
+export function VolumeGraph(props) {
+  const { volumeGraphData } = props;
+  console.log(volumeGraphData);
   return (
     <>
-      <div className="volumegraph--title">"insert item name" Price</div>
+      <div className="volumegraph--title"> Volume History</div>
       <div className="graph--data">
-        <BarChart width={800} height={400} data={data}>
+        <BarChart width={900} height={450} data={volumeGraphData}>
           <XAxis
             axisLine={{ stroke: "#ffebcd" }}
-            dataKey="name"
+            dataKey="timestamp"
             tick={<CustomizedAxisTick offset={16} />}
           />
           <YAxis
@@ -41,14 +28,14 @@ export function VolumeGraph() {
           <Legend />
           <Bar
             type="monotone"
-            dataKey="low"
+            dataKey="lowPriceVolume"
             stroke="#CC8E31"
             fillOpacity={1}
             fill="#CC8E31"
           />
           <Bar
             type="monotone"
-            dataKey="high"
+            dataKey="highPriceVolume"
             stroke="#43A836"
             fillOpacity={1}
             fill="#43A836"

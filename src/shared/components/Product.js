@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { PriceGraph } from "./PriceGraph";
+import { graphData, PriceGraph } from "./PriceGraph";
 import { VolumeGraph } from "./VolumeGraph";
 import { itemImage, itemTimestampUrl } from "../../API/API.js";
 
@@ -20,7 +20,9 @@ export function Product() {
         .then((itemPriceData) => {
           setApiResults((apiResults) => ({
             ...apiResults,
-            volumeData: itemPriceData?.data,
+            volumeData: itemPriceData?.data.filter(
+              (dataFilter, index) => index % 5 === 0
+            ),
             exchangeData: itemPriceData?.data.filter(
               (priceFilter) =>
                 priceFilter.timestamp ===
@@ -28,6 +30,7 @@ export function Product() {
             )[0],
           }));
         });
+      console.log(apiResults.volumeData);
     } catch (error) {
       console.log(error);
     }
@@ -64,19 +67,19 @@ export function Product() {
       </section>
       <section className="product--stats">
         <span className="product--stats">
-          High Price:{" "}
+          High Price:
           {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ?? "n/a"}
           High Volume:
           {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
         </span>
         <span className="product--stats">
-          Low Price:{" "}
+          Low Price:
           {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "n/a"}
           Low Volume:
           {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
         </span>
-        <PriceGraph />
-        <VolumeGraph />
+        <PriceGraph priceGraphData={apiResults.volumeData} />
+        <VolumeGraph volumeGraphData={apiResults.volumeData} />
       </section>
     </article>
   );
