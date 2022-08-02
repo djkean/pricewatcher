@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { graphData, PriceGraph } from "./PriceGraph";
+import { PriceGraph } from "./PriceGraph";
 import { VolumeGraph } from "./VolumeGraph";
 import { itemImage, itemTimestampUrl } from "../../API/API.js";
 
