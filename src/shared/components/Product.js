@@ -21,7 +21,9 @@ export function Product() {
           setApiResults((apiResults) => ({
             ...apiResults,
             volumeData: itemPriceData?.data.filter(
-              (dataFilter, index) => index % 5 === 0
+              (dataFilter, index) =>
+                dataFilter.avgLowPrice != null &&
+                dataFilter.avgHighPrice != null
             ),
             exchangeData: itemPriceData?.data.filter(
               (priceFilter) =>

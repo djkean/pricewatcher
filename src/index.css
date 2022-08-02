@@ -15,6 +15,12 @@
   --tableBackground: #271b0a;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
   margin: 0;
   background-color: var(--baseBackground);
@@ -89,10 +95,10 @@ nav {
   color: var(--baseText);
   justify-content: center;
   font-size: 1.2em;
-  bottom: 0;
   width: 100%;
-  margin-top: 1.825em;
+  margin-top: auto;
   padding: 0.06em;
+  position: relative;
 }
 
 .footer--link {
@@ -156,6 +162,7 @@ nav {
 .page {
   text-align: center;
   color: var(--baseText);
+  padding-bottom: 2em;
 }
 
 h2 {
@@ -221,4 +228,5 @@ h2 {
   display: flex;
   justify-content: center;
   margin-top: 1.6em;
+  margin-left: -6.5em;
 }

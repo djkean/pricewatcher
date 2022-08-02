@@ -1,4 +1,5 @@
 import React from "react";
+import { convertTime } from "./convertTime";
 import {
   AreaChart,
   CartesianGrid,
@@ -10,6 +11,10 @@ import {
 
 export function PriceGraph(props) {
   const { priceGraphData } = props;
+  priceGraphData?.forEach((changeTime) => {
+    changeTime.date = convertTime(changeTime?.timestamp);
+  });
+  console.log(priceGraphData?.length);
   return (
     <>
       <div className="pricegraph--title"> Price History</div>
@@ -28,12 +33,13 @@ export function PriceGraph(props) {
           <CartesianGrid strokeDasharray="0 0" stroke="#ffebcd" />
           <XAxis
             axisLine={{ stroke: "#ffebcd" }}
-            dataKey="timestamp"
+            dataKey="date"
             tick={<CustomizedAxisTick offset={16} />}
           />
           <YAxis
             axisLine={{ stroke: "#ffebcd" }}
             tick={<CustomizedAxisTick offset={2} />}
+            width={105}
           />
           <Tooltip
             contentStyle={{

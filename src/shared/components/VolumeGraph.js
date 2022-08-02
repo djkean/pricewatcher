@@ -1,9 +1,13 @@
 import React from "react";
+import { convertTime } from "./convertTime";
 import { BarChart, XAxis, YAxis, Tooltip, Bar, Legend } from "recharts";
 
 export function VolumeGraph(props) {
   const { volumeGraphData } = props;
-  console.log(volumeGraphData);
+  volumeGraphData?.forEach((changeTime) => {
+    changeTime.date = convertTime(changeTime?.timestamp);
+  });
+  console.log(volumeGraphData?.length);
   return (
     <>
       <div className="volumegraph--title"> Volume History</div>
@@ -11,12 +15,13 @@ export function VolumeGraph(props) {
         <BarChart width={900} height={450} data={volumeGraphData}>
           <XAxis
             axisLine={{ stroke: "#ffebcd" }}
-            dataKey="timestamp"
+            dataKey="date"
             tick={<CustomizedAxisTick offset={16} />}
           />
           <YAxis
             axisLine={{ stroke: "#ffebcd" }}
             tick={<CustomizedAxisTick offset={2} />}
+            width={105}
           />
           <Tooltip
             contentStyle={{
