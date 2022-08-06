@@ -15,9 +15,9 @@ export const addFavourite = (item) => {
 };
 
 export const removeFavourite = (id) => {
-  const beans = JSON.parse(localStorage.getItem("favourites"));
-  if (beans === null) return;
-  const dupes = beans.filter((checkID) => checkID.id !== id);
+  const favList = JSON.parse(localStorage.getItem("favourites"));
+  if (favList === null) return;
+  const dupes = favList.filter((checkID) => checkID.id !== id);
   localStorage.setItem("favourites", JSON.stringify(dupes));
   return JSON.parse(localStorage.getItem("favourites"));
 };
