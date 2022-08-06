@@ -20,6 +20,9 @@ export function Navbar() {
           About
         </Link>
         <span className="nav--link">Random Page</span>
+        <Link className="nav--link" to="/Favourites">
+          Favourites
+        </Link>
       </span>
     </nav>
   );

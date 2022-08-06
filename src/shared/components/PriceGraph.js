@@ -1,5 +1,5 @@
 import React from "react";
-import { convertTime } from "./convertTime";
+import { convertTime } from "../functions/convertTime";
 import {
   AreaChart,
   CartesianGrid,

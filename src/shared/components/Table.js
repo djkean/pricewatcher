@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Loader } from "./Loader";
+import { itemImage } from "./ProductList";
 import { addFavourite, removeFavourite } from "../functions/favourites";
 
-export const catalogueAPI = "https://prices.runescape.wiki/api/v1/osrs/mapping";
-export const itemPriceAPI = "https://prices.runescape.wiki/api/v1/osrs/latest";
-export const itemImage = (itemID) =>
-  `https://oldschool.runescape.wiki/images/a/a2/${itemID}`;
-
-export function Products() {
-  const [catalogue, setCatalogue] = useState([]);
-
-  const fetchCatalogue = async () => {
-    return await fetch(catalogueAPI)
-      .then((response) => response.json())
-      .then((items) => setCatalogue(items));
-  };
-
-  useEffect(() => {
-    fetchCatalogue();
-  }, []);
+export function Table({ apiResults, favourites }) {
+  let catalogue;
+  if (apiResults) {
+    catalogue = apiResults;
+  } else if (favourites) {
+    catalogue = favourites;
+  } else {
+    return <h2>RUH ROH RAGGY</h2>;
+  }
   return (
     <>
       {catalogue.length === 0 ? (
@@ -41,7 +34,7 @@ export function Products() {
             <tbody>
               {catalogue.length > 0 &&
                 catalogue.map((item) => (
-                  <tr key={item.id}>
+                  <tr>
                     <td>
                       <img
                         src={itemImage(item.icon.replace(/ /g, "_"))}
@@ -62,7 +55,7 @@ export function Products() {
                     <td>
                       <button
                         className="favourites--button"
-                        onClick={() => addFavourite(item)}
+                        onClick={() => addFavourite()}
                       >
                         !!!
                       </button>

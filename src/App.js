@@ -6,6 +6,7 @@ import { ProductListPage } from "./pages/ProductList";
 import { HomePage } from "./pages/Home";
 import { AboutPage } from "./pages/About";
 import { Product } from "./shared/components/Product";
+import { Favourites } from "./shared/components/Favourites";
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
         <Route path="/ProductList" element={<ProductListPage />} />
         <Route path="/About" element={<AboutPage />} />
         <Route path="/Product/:id" element={<Product />} />
+        <Route path="/Favourites" element={<Favourites />} />
       </Routes>
       <Footer />
     </BrowserRouter>

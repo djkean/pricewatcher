@@ -1,5 +1,5 @@
 import React from "react";
-import { convertTime } from "./convertTime";
+import { convertTime } from "../functions/convertTime";
 import { BarChart, XAxis, YAxis, Tooltip, Bar, Legend } from "recharts";
 
 export function VolumeGraph(props) {
