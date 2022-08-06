@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Loader } from "./Loader";
 import { itemImage } from "./ProductList";
 import { addFavourite, removeFavourite } from "../functions/favourites";
 
 export function Table({ apiResults, favourites }) {
+  //const [catalogueItems, setCatalogueItems] = useState([]);
   let catalogue;
   if (apiResults) {
     catalogue = apiResults;
   } else if (favourites) {
     catalogue = favourites;
   } else {
-    return <h2>RUH ROH RAGGY</h2>;
+    return <h2>OOPS</h2>;
   }
+  //setCatalogueItems(catalogue);
   return (
     <>
       {catalogue.length === 0 ? (
@@ -34,7 +36,7 @@ export function Table({ apiResults, favourites }) {
             <tbody>
               {catalogue.length > 0 &&
                 catalogue.map((item) => (
-                  <tr>
+                  <tr key={item.id}>
                     <td>
                       <img
                         src={itemImage(item.icon.replace(/ /g, "_"))}
@@ -55,7 +57,11 @@ export function Table({ apiResults, favourites }) {
                     <td>
                       <button
                         className="favourites--button"
-                        onClick={() => addFavourite()}
+                        onClick={() =>
+                          apiResults
+                            ? addFavourite(item.id)
+                            : removeFavourite(item.id)
+                        }
                       >
                         !!!
                       </button>

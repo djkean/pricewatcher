@@ -1,34 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Favourites } from "../components/Favourites";
-
 export const addFavourite = (item) => {
   if (localStorage.getItem("favourites") === null) {
     localStorage.setItem("favourites", JSON.stringify([item]));
   } else {
-    const favouriteItems = localStorage.getItem("favourites");
-    favouriteItems.push(item);
-    localStorage.setItem("favourites", JSON.stringify(favouriteItems));
-    console.log("favourites", localStorage.getItem("favourites"));
+    const favouriteItems = JSON.parse(localStorage.getItem("favourites"));
+    const dupeCheck = favouriteItems.filter(
+      (favItem) => favItem.id === item.id
+    ).length;
+    if (dupeCheck === 0) {
+      favouriteItems.push(item);
+      localStorage.setItem("favourites", JSON.stringify(favouriteItems));
+    }
   }
+  return JSON.parse(localStorage.getItem("favourites"));
 };
 
-export const removeFavourite = () => {
-  localStorage.removeItem("favourites", JSON.stringify("favourites"));
+export const removeFavourite = (id) => {
+  const beans = JSON.parse(localStorage.getItem("favourites"));
+  if (beans === null) return;
+  const dupes = beans.filter((checkID) => checkID.id !== id);
+  localStorage.setItem("favourites", JSON.stringify(dupes));
+  return JSON.parse(localStorage.getItem("favourites"));
 };
+
 export const loadFavourites = () => {
-  const getFavourites = JSON.parse(localStorage.getItem("favourites"));
-  if (localStorage.getItem("favourites") === null) {
-    return (
-      <div className="no--favourites">
-        You haven't set any favourites. You do so on our{" "}
-        <Link className="no--favourites--link" to="/ProductList">
-          Products
-        </Link>{" "}
-        page.
-      </div>
-    );
-  } else {
-    return <Favourites content={getFavourites} />;
-  }
+  return JSON.parse(localStorage.getItem("favourites"));
 };

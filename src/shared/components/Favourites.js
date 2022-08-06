@@ -1,23 +1,28 @@
 import React from "react";
 import { Table } from "./Table";
-import { Loader } from "./Loader";
+import { Link } from "react-router-dom";
 import {
   addFavourite,
   removeFavourite,
   loadFavourites,
 } from "../functions/favourites";
 
-export function Favourites(props) {
-  const { content } = props;
-  console.log(content);
+export function Favourites() {
+  const getFavourites = loadFavourites();
   return (
     <>
-      {content?.length === 0 ? (
-        <Loader />
+      {getFavourites?.length === 0 ? (
+        <div className="no--favourites">
+          You haven't set any favourites. You can do so on our{" "}
+          <Link className="no--favourites--link" to="/ProductList">
+            Products
+          </Link>{" "}
+          page.
+        </div>
       ) : (
         <>
           <h2 className="favourites--title">Your Favourites</h2>
-          <Table />
+          <Table favourites={getFavourites} />
         </>
       )}
     </>

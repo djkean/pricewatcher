@@ -16,13 +16,13 @@ export function Navbar() {
         <Link className="nav--link" to="/ProductList">
           Products
         </Link>
+        <Link className="nav--link" to="/Favourites">
+          Favourites
+        </Link>
         <Link className="nav--link" to="/About">
           About
         </Link>
         <span className="nav--link">Random Page</span>
-        <Link className="nav--link" to="/Favourites">
-          Favourites
-        </Link>
       </span>
     </nav>
   );
