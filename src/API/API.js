@@ -8,7 +8,5 @@ export const itemImage = (itemID) =>
   `https://oldschool.runescape.wiki/images/a/a2/${itemID}`;
 
 const getItem = async (itemId) => {
-  return await fetch(itemDetailUrl(itemId))
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+  return await fetch(itemDetailUrl(itemId)).then((response) => response.json());
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { convertTime } from "../functions/convertTime";
+import { convertTime } from "../../functions/convertTime";
 import { BarChart, XAxis, YAxis, Tooltip, Bar, Legend } from "recharts";
 
 export function VolumeGraph(props) {
@@ -7,7 +7,6 @@ export function VolumeGraph(props) {
   volumeGraphData?.forEach((changeTime) => {
     changeTime.date = convertTime(changeTime?.timestamp);
   });
-  console.log(volumeGraphData?.length);
   return (
     <>
       <div className="volumegraph--title"> Volume History</div>

@@ -1,28 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Loader } from "./Loader";
-import { itemImage } from "./ProductList";
-import { addFavourite, removeFavourite } from "../functions/favourites";
+import { Loader } from "../Loader";
+import { itemImage } from "../../../API/API";
+import { useLocalStorage } from "../../../Hooks/useLocalStorage";
+import { favIcon } from "../images/addFavourite";
 
-export function Table({ apiResults, favourites }) {
-  //const [catalogueItems, setCatalogueItems] = useState([]);
-  let catalogue;
-  if (apiResults) {
-    catalogue = apiResults;
-  } else if (favourites) {
-    catalogue = favourites;
-  } else {
-    return <h2>OOPS</h2>;
+const addFavourite = (item) => {
+  let tempStorage = [];
+  if (localStorage.getItem("favourites") === null) {
+    tempStorage.push(item);
+    return tempStorage;
   }
-  //setCatalogueItems(catalogue);
+  tempStorage = JSON.parse(localStorage.getItem("favourites"));
+  const dupeCheck = tempStorage.filter(
+    (favItem) => favItem.id === item.id
+  ).length;
+  if (dupeCheck === 0) {
+    tempStorage.push(item);
+  }
+  return tempStorage;
+};
+
+export function ProductsTable({ apiResults }) {
+  const [localValues, setLocalValues] = useLocalStorage(
+    "favourites",
+    localStorage.getItem("favourites")
+  );
+  const [catalogueItems, setCatalogueItems] = useState([]);
+  useEffect(() => {
+    setCatalogueItems(apiResults);
+  }, [apiResults]);
+
   return (
     <>
-      {catalogue.length === 0 ? (
+      {catalogueItems?.length === 0 ? (
         <Loader />
       ) : (
         <>
           <section className="product--list--count">
-            There are {catalogue.length} items!
+            There are {catalogueItems.length} items!
           </section>
           <table className="product--list--table">
             <thead>
@@ -34,8 +50,8 @@ export function Table({ apiResults, favourites }) {
               </tr>
             </thead>
             <tbody>
-              {catalogue.length > 0 &&
-                catalogue.map((item) => (
+              {catalogueItems.length > 0 &&
+                catalogueItems.map((item) => (
                   <tr key={item.id}>
                     <td>
                       <img
@@ -57,13 +73,9 @@ export function Table({ apiResults, favourites }) {
                     <td>
                       <button
                         className="favourites--button"
-                        onClick={() =>
-                          apiResults
-                            ? addFavourite(item.id)
-                            : removeFavourite(item.id)
-                        }
+                        onClick={() => setLocalValues(addFavourite(item))}
                       >
-                        !!!
+                        {favIcon}
                       </button>
                     </td>
                   </tr>

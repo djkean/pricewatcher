@@ -1,5 +1,5 @@
 import React from "react";
-import { convertTime } from "../functions/convertTime";
+import { convertTime } from "../../functions/convertTime";
 import {
   AreaChart,
   CartesianGrid,
@@ -14,7 +14,6 @@ export function PriceGraph(props) {
   priceGraphData?.forEach((changeTime) => {
     changeTime.date = convertTime(changeTime?.timestamp);
   });
-  console.log(priceGraphData?.length);
   return (
     <>
       <div className="pricegraph--title"> Price History</div>

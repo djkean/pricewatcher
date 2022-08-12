@@ -1,5 +1,5 @@
 import React from "react";
-import { Products } from "../../shared/components/ProductList";
+import { Products } from "../../shared/components/ProductList/ProductList";
 
 export const ProductListPage = () => {
   return (

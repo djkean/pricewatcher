@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { PriceGraph } from "./PriceGraph";
-import { VolumeGraph } from "./VolumeGraph";
-import { itemImage, itemTimestampUrl } from "../../API/API.js";
+import { PriceGraph } from "../PriceGraph";
+import { VolumeGraph } from "../VolumeGraph";
+import { itemImage, itemTimestampUrl } from "../../../API/API.js";
 
 export function Product() {
   const routeParams = useParams();
@@ -32,9 +32,8 @@ export function Product() {
             )[0],
           }));
         });
-      console.log(apiResults.volumeData);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -42,7 +41,6 @@ export function Product() {
     fetchExchangeData();
   }, []);
 
-  console.log(apiResults);
   return (
     <article className="product">
       <section className="product--details">
