@@ -9,7 +9,7 @@ export function VolumeGraph(props) {
   });
   return (
     <>
-      <div className="volumegraph--title"> Volume History</div>
+      <div className="graph--title"> Volume History</div>
       <div className="graph--data">
         <BarChart width={900} height={450} data={volumeGraphData}>
           <XAxis

@@ -19,9 +19,6 @@ export function Navbar() {
         <Link className="nav--link" to="/Favourites">
           Favourites
         </Link>
-        <Link className="nav--link" to="/About">
-          About
-        </Link>
         <span className="nav--link">Random Page</span>
       </span>
     </nav>

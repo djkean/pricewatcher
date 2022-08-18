@@ -4,7 +4,7 @@
 }
 
 :root {
-  --baseText: #ffebcd;
+  --baseText: #fff8ee;
   --fieldText: #27221b;
   --baseBackground: #474035;
   --backgroundDark: #291c0a;
@@ -13,6 +13,8 @@
   --hoverFooterLink: #f7971b;
   --navHoverLink: #c5b49b;
   --tableBackground: #271b0a;
+  --highColor: #43a846;
+  --lowColor: #cc8e31;
 }
 
 #root {
@@ -59,34 +61,11 @@ nav {
   margin-left: 0.6em;
 }
 
-.pricegraph--title {
+.graph--title {
   color: var(--baseText);
   text-align: center;
   font-size: 1.5em;
   margin: 0.3em;
-  padding-top: 5em;
-}
-
-.pricegraph--graph {
-  display: flex;
-  margin: auto;
-  width: 600px;
-}
-
-.volumegraph--title {
-  color: var(--baseText);
-  text-align: center;
-  font-size: 1.5em;
-  margin-top: 1.5em;
-  margin-bottom: 0.25em;
-  padding-top: 1.8em;
-}
-
-.volumegraph--graph {
-  display: flex;
-  margin: auto;
-  width: 600px;
-  padding-bottom: 0.85em;
 }
 
 .footer--main {
@@ -134,14 +113,34 @@ nav {
   color: var(--navHoverLink);
 }
 
-.product--list--table{
+.table--page {
+  margin: 0 auto;
+  max-width: 1000px;
+  width: min(1000px, 100%);
+}
+
+.table--image {
+  max-width: 2em;
+  text-align: center;
+}
+
+.table--name {
+  max-width: 200px;
+}
+
+.product--list--table {
   margin: auto;
-  width: 90%;
+  width: 100%;
   color: var(--baseText);
   border: solid black 0.125em;
   background-color: var(--tableBackground);
   border-radius: 0.55em;
-  padding: 0.2em;
+  text-align: left;
+  max-width: 1000px;
+}
+
+.product--list--table th {
+  padding-left: 0.3em;
 }
 
 .product--list--table tbody tr td a {
@@ -155,14 +154,18 @@ nav {
 }
 
 .product--list--table tbody tr td{
-  text-align: center;
   background-color: var(--baseBackground);
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }
 
 .page {
-  text-align: center;
   color: var(--baseText);
   padding-bottom: 2em;
+}
+
+.page h2 {
+  padding-left: 0.3em;
 }
 
 h2 {
@@ -170,14 +173,17 @@ h2 {
   color: var(--baseText);
 }
 
-#about--section {
+#home--about{
   padding-top: 1.5em;
   margin: auto;
-  max-width: 70%;
+  max-width: 60%;
+  font-size: 125%;
 }
 
 .product--list--count {
+  padding-left: 0.3em;
   margin-bottom: 0.5em;
+  color: var(--baseText);
 }
 
 .product {
@@ -206,18 +212,8 @@ h2 {
   margin-left: 0.35em;
 }
 
-.product--buylimit {
-  padding-right: 3.7em;
-}
-
 .product--stats {
-  padding-top: 3.7em;
-  padding-left: 1.4em;
-  padding-right: 1.4em;
-}
-
-.product--examine--text {
-  text-decoration: wavy;
+  padding:1em;
 }
 
 #low--stats {
@@ -227,10 +223,52 @@ h2 {
 .graph--data {
   display: flex;
   justify-content: center;
-  margin-top: 1.6em;
+  margin-bottom: 1.6em;
   margin-left: -6.5em;
 }
 
 .favourites--title {
-  padding: 1em;
+  padding: 0.5em 0;
+}
+
+.products--title {
+  padding: 0.5em 0;
+}
+
+.stats--break {
+  align-items: center;
+  width: 1.5em;
+}
+
+.product--stats > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.product--stats > div > div {
+  width: calc(100% - 1.5em);
+}
+
+.product--stats table {
+  margin: 0 auto;
+  border-spacing: 0.5em;
+}
+
+.product--stats td {
+  text-align: left;
+}
+
+.color--high {
+  color: var(--highColor);
+  font-weight: bold;
+  font-size: 110%;
+  
+}
+
+.color--low {
+  color: var(--lowColor);
+  font-weight: bold;
+  font-size: 110%;
 }

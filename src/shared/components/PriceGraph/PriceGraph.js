@@ -16,7 +16,7 @@ export function PriceGraph(props) {
   });
   return (
     <>
-      <div className="pricegraph--title"> Price History</div>
+      <div className="graph--title"> Price History</div>
       <div className="graph--data">
         <AreaChart width={900} height={450} data={priceGraphData}>
           <defs>

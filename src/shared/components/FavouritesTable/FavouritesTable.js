@@ -18,7 +18,7 @@ export function FavouritesTable() {
   );
 
   return (
-    <>
+    <div className="table--page">
       <h2 className="favourites--title">Your Favourites</h2>
       <section className="product--list--count">
         There are {localValues.length} items!
@@ -26,17 +26,18 @@ export function FavouritesTable() {
       <table className="product--list--table">
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Item Name</th>
+            <th className="table--image">Image</th>
+            <th className="table--name">Item Name</th>
             <th>High Price</th>
             <th>Low Price</th>
+            <th className="table--image"></th>
           </tr>
         </thead>
         <tbody>
           {localValues.length > 0 ? (
             localValues.map((item) => (
               <tr key={item.id}>
-                <td>
+                <td className="table--image">
                   <img src={itemImage(item.icon.replace(/ /g, "_"))} alt=" " />
                 </td>
                 <td>
@@ -50,7 +51,7 @@ export function FavouritesTable() {
                 </td>
                 <td></td>
                 <td></td>
-                <td>
+                <td className="table--image">
                   <button
                     className="favourites--button"
                     onClick={() => setLocalValues(removeFavourite(item.id))}
@@ -74,6 +75,6 @@ export function FavouritesTable() {
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }

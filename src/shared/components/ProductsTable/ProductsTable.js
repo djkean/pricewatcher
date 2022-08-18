@@ -32,7 +32,7 @@ export function ProductsTable({ apiResults }) {
   }, [apiResults]);
 
   return (
-    <>
+    <div>
       {catalogueItems?.length === 0 ? (
         <Loader />
       ) : (
@@ -43,17 +43,18 @@ export function ProductsTable({ apiResults }) {
           <table className="product--list--table">
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Item Name</th>
+                <th className="table--image">Image</th>
+                <th className="table--name">Item Name</th>
                 <th>High Price</th>
                 <th>Low Price</th>
+                <th className="table--image"></th>
               </tr>
             </thead>
             <tbody>
               {catalogueItems.length > 0 &&
                 catalogueItems.map((item) => (
                   <tr key={item.id}>
-                    <td>
+                    <td className="table--image">
                       <img
                         src={itemImage(item.icon.replace(/ /g, "_"))}
                         alt=" "
@@ -70,7 +71,7 @@ export function ProductsTable({ apiResults }) {
                     </td>
                     <td></td>
                     <td></td>
-                    <td>
+                    <td className="table--image">
                       <button
                         className="favourites--button"
                         onClick={() => setLocalValues(addFavourite(item))}
@@ -84,6 +85,6 @@ export function ProductsTable({ apiResults }) {
           </table>
         </>
       )}
-    </>
+    </div>
   );
 }

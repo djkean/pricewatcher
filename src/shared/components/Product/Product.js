@@ -55,32 +55,62 @@ export function Product() {
             <span className="product--id"> - {productID}</span>
           </div>
         </div>
-        <span className="product--buylimit">
-          Buy Limit: {itemData.state?.data.limit}
-        </span>
         <span className="product--examine">
-          Examine Text:
           <p className="product--examine--text">
             {itemData.state?.data.examine}
           </p>
         </span>
+        <span className="product--buylimit">
+          Buy Limit: {itemData.state?.data.limit}
+        </span>
       </section>
       <section className="product--stats">
-        <span className="product--stats">
-          High Price:
-          {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ?? "n/a"}
-          High Volume:
-          {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
-        </span>
-        <span className="product--stats">
-          Low Price:
-          {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "n/a"}
-          Low Volume:
-          {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
-        </span>
-        <PriceGraph priceGraphData={apiResults.volumeData} />
-        <VolumeGraph volumeGraphData={apiResults.volumeData} />
+        <table>
+          <tbody>
+            <tr>
+              <td>High Price:</td>
+              <td className="color--high">
+                {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ??
+                  "N/A"}
+              </td>
+              <td>Low Price:</td>
+              <td className="color--low">
+                {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ??
+                  "N/A"}
+              </td>
+            </tr>
+            <tr>
+              <td>High Volume:</td>
+              <td className="color--high">
+                {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
+              </td>
+              <td>Low okokoVolume:</td>
+              <td className="color--low">
+                {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
+      <PriceGraph priceGraphData={apiResults.volumeData} />
+      <VolumeGraph volumeGraphData={apiResults.volumeData} />
     </article>
   );
 }
+
+/*           <div>
+            High Price:
+            {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ?? "N/A"}
+          </div>
+          <div className="stats--break"> | </div>
+          <div>
+            Low Price:
+            {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "N/A"}
+          </div>
+        </div>
+        <div>
+          High Volume:
+          {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
+          Low Volume:
+          {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
+        </div> */
