@@ -84,7 +84,7 @@ export function Product() {
               <td className="color--high">
                 {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
               </td>
-              <td>Low okokoVolume:</td>
+              <td>Low Volume:</td>
               <td className="color--low">
                 {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
               </td>
