@@ -14,13 +14,14 @@ export function Navbar() {
           Home
         </Link>
         <Link className="nav--link" to="/ProductList">
-          Products
+          Items
         </Link>
         <Link className="nav--link" to="/Favourites">
           Favourites
         </Link>
-        <span className="nav--link">Random Page</span>
       </span>
     </nav>
   );
 }
+
+// <span className="nav--link">Random Page</span>

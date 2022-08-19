@@ -5,7 +5,7 @@ export const ProductListPage = () => {
   return (
     <div className="page">
       <div className="table--page">
-        <h2 className="products--title">Product List</h2>
+        <h2 className="products--title">Item List</h2>
         <Products />
       </div>
     </div>

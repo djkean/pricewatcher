@@ -35,6 +35,7 @@ nav {
 
 .nav--title {
   font-size: 250%;
+  padding-left: 0.25em;
   color: var(--baseText);
   text-decoration: none;
 }
@@ -66,6 +67,7 @@ nav {
   text-align: center;
   font-size: 1.5em;
   margin: 0.3em;
+  padding-bottom: 0.5em;
 }
 
 .footer--main {
@@ -84,6 +86,20 @@ nav {
   padding-right: 0.25em;
 }
 
+.home--link:link {
+  color: var(--baseFooterLink);
+  text-decoration: none;
+}
+
+.home--link:visited {
+  color: var(--baseFooterLink);
+  text-decoration: none;
+}
+
+.home--link:hover {
+  color:var(--hoverFooterLink)
+}
+
 .footer--link:link {
   color: var(--baseFooterLink);
 }
@@ -97,7 +113,7 @@ nav {
 }
 
 .nav--link {
-  margin-left: 1em;
+  margin-left: 2em;
   text-decoration: none;
 }
 
