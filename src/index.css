@@ -44,7 +44,7 @@ nav {
   flex-direction: row;
   font-size: 1.25em;
   color: var(--baseText);
-  padding: 0.3em;
+  padding: 0.6em;
 }
 
 .nav--search-field {
@@ -97,7 +97,7 @@ nav {
 }
 
 .nav--link {
-  margin-left: 0.6em;
+  margin-left: 1em;
   text-decoration: none;
 }
 
@@ -162,6 +162,7 @@ nav {
 .page {
   color: var(--baseText);
   padding-bottom: 2em;
+  line-height: 1.8em;
 }
 
 .page h2 {
