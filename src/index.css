@@ -54,14 +54,6 @@ nav {
   color: var(--fieldText);
 }
 
-.nav--about {
-  margin-left: 0.6em;
-}
-
-.nav--random {
-  margin-left: 0.6em;
-}
-
 .graph--title {
   color: var(--baseText);
   text-align: center;
@@ -138,6 +130,7 @@ nav {
 .table--image {
   max-width: 2em;
   text-align: center;
+  padding-top: 0.3em;
 }
 
 .table--name {
@@ -153,7 +146,6 @@ nav {
   background-color: var(--tableBackground);
   border-radius: 0.55em;
   text-align: left;
-  max-width: 800px;
 }
 
 .product--list--table th {
@@ -163,7 +155,7 @@ nav {
 .product--list--table tbody tr td a {
   color: var(--baseText);
   text-decoration: none;
-  padding-left: 0.3em;
+  padding-left: 0.4em;
   font-size: 105%;
 }
 
@@ -234,10 +226,6 @@ h2 {
 
 .product--stats {
   padding:1em;
-}
-
-#low--stats {
-  padding-top: 2.3em;
 }
 
 .graph--data {

@@ -63,7 +63,7 @@ export function ProductsTable({ apiResults }) {
                     <td>
                       <Link
                         key={item.id}
-                        to={"/Product/" + item.id}
+                        to={"/Item/" + item.id}
                         state={{ data: item }}
                       >
                         {item.name}
