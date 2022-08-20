@@ -131,8 +131,8 @@ nav {
 
 .table--page {
   margin: 0 auto;
-  max-width: 1000px;
-  width: min(1000px, 100%);
+  max-width: 800px;
+  width: min(800px, 100%);
 }
 
 .table--image {
@@ -142,6 +142,7 @@ nav {
 
 .table--name {
   max-width: 200px;
+  font-size: 110%;
 }
 
 .product--list--table {
@@ -152,7 +153,7 @@ nav {
   background-color: var(--tableBackground);
   border-radius: 0.55em;
   text-align: left;
-  max-width: 1000px;
+  max-width: 800px;
 }
 
 .product--list--table th {
@@ -162,6 +163,8 @@ nav {
 .product--list--table tbody tr td a {
   color: var(--baseText);
   text-decoration: none;
+  padding-left: 0.3em;
+  font-size: 105%;
 }
 
 .product--list--table tbody tr td a:hover {
@@ -193,7 +196,7 @@ h2 {
 #home--about{
   padding-top: 1.5em;
   margin: auto;
-  max-width: 60%;
+  max-width: 800px;
   font-size: 125%;
 }
 

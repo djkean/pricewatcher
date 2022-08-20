@@ -13,7 +13,7 @@ export function Navbar() {
         <Link className="nav--link" to="/">
           Home
         </Link>
-        <Link className="nav--link" to="/ProductList">
+        <Link className="nav--link" to="/ItemList">
           Items
         </Link>
         <Link className="nav--link" to="/Favourites">
@@ -23,5 +23,3 @@ export function Navbar() {
     </nav>
   );
 }
-
-// <span className="nav--link">Random Page</span>

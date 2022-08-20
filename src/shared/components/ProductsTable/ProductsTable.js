@@ -43,7 +43,7 @@ export function ProductsTable({ apiResults }) {
           <table className="product--list--table">
             <thead>
               <tr>
-                <th className="table--image">Image</th>
+                <th className="table--image"></th>
                 <th className="table--name">Item Name</th>
                 <th>High Price</th>
                 <th>Low Price</th>

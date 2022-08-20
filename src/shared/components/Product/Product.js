@@ -55,14 +55,10 @@ export function Product() {
             <span className="product--id"> - {productID}</span>
           </div>
         </div>
-        <span className="product--examine">
-          <p className="product--examine--text">
-            {itemData.state?.data.examine}
-          </p>
+        <span>
+          <p>{itemData.state?.data.examine}</p>
         </span>
-        <span className="product--buylimit">
-          Buy Limit: {itemData.state?.data.limit}
-        </span>
+        <span>Buy Limit: {itemData.state?.data.limit}</span>
       </section>
       <section className="product--stats">
         <table>

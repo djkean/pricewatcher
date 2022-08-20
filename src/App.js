@@ -13,8 +13,8 @@ export function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/ProductList" element={<ProductListPage />} />
-        <Route path="/Product/:id" element={<Product />} />
+        <Route path="/ItemList" element={<ProductListPage />} />
+        <Route path="/Item/:id" element={<Product />} />
         <Route path="/Favourites" element={<FavouritesTable />} />
       </Routes>
       <Footer />
