@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/pricewatcher/static/css/main.19fdb355.css",
-    "main.js": "/pricewatcher/static/js/main.e6c4b0fe.js",
+    "main.css": "/pricewatcher/static/css/main.8f079a44.css",
+    "main.js": "/pricewatcher/static/js/main.d42dc24b.js",
     "index.html": "/pricewatcher/index.html",
-    "main.19fdb355.css.map": "/pricewatcher/static/css/main.19fdb355.css.map",
-    "main.e6c4b0fe.js.map": "/pricewatcher/static/js/main.e6c4b0fe.js.map"
+    "main.8f079a44.css.map": "/pricewatcher/static/css/main.8f079a44.css.map",
+    "main.d42dc24b.js.map": "/pricewatcher/static/js/main.d42dc24b.js.map"
   },
   "entrypoints": [
-    "static/css/main.19fdb355.css",
-    "static/js/main.e6c4b0fe.js"
+    "static/css/main.8f079a44.css",
+    "static/js/main.d42dc24b.js"
   ]
 }
