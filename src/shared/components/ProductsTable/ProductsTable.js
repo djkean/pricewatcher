@@ -31,6 +31,14 @@ export function ProductsTable({ apiResults }) {
     setCatalogueItems(apiResults);
   }, [apiResults]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 50;
+  const itemPage = catalogueItems.filter(
+    (_, index) =>
+      index < currentPage * itemsPerPage &&
+      index > (currentPage - 1) * itemsPerPage
+  );
+
   return (
     <div>
       {catalogueItems?.length === 0 ? (
@@ -38,7 +46,11 @@ export function ProductsTable({ apiResults }) {
       ) : (
         <>
           <section className="product--list--count">
-            There are {catalogueItems.length} items!
+            There are {catalogueItems.length} items! Search:
+            <input
+              className="item--search-field"
+              placeholder="Item Name"
+            ></input>
           </section>
           <table className="product--list--table">
             <thead>
@@ -52,7 +64,7 @@ export function ProductsTable({ apiResults }) {
             </thead>
             <tbody>
               {catalogueItems.length > 0 &&
-                catalogueItems.map((item) => (
+                itemPage.map((item) => (
                   <tr key={item.id}>
                     <td className="table--image">
                       <img
