@@ -235,6 +235,15 @@ h2 {
   margin-left: -6.5em;
 }
 
+.graph--card {
+  background-color: var(--backgroundDark);
+  border: var(--backgroundDark) 4px solid;
+  border-radius: 19px;
+  margin: auto;
+  width: 90%;
+  box-shadow: 5px 5px 5px var(--fieldText);
+}
+
 .favourites--title {
   padding: 0.5em 0;
 }
