@@ -235,12 +235,35 @@ h2 {
   margin-left: -6.5em;
 }
 
-.graph--card {
+.product--card {
+  background-color: var(--backgroundDark);
+  border: var(--backgroundDark) 4px solid;
+  border-radius: 19px;
+  box-shadow: 5px 5px 5px var(--fieldText);
+  margin: auto;
+  width: 525px;
+}
+
+.pricegraph--card {
   background-color: var(--backgroundDark);
   border: var(--backgroundDark) 4px solid;
   border-radius: 19px;
   margin: auto;
-  width: 90%;
+  width: 1000px;
+  box-shadow: 5px 5px 5px var(--fieldText);
+}
+
+.card--break {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.volumegraph--card {
+  background-color: var(--backgroundDark);
+  border: var(--backgroundDark) 4px solid;
+  border-radius: 19px;
+  margin: auto;
+  width: 1000px;
   box-shadow: 5px 5px 5px var(--fieldText);
 }
 

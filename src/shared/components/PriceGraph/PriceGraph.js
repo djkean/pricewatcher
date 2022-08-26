@@ -16,10 +16,10 @@ export function PriceGraph(props) {
   });
   return (
     <>
-      <div className="graph--card">
+      <div className="pricegraph--card">
         <div className="graph--title"> Price History</div>
         <div className="graph--data">
-          <AreaChart width={900} height={450} data={priceGraphData}>
+          <AreaChart width={800} height={400} data={priceGraphData}>
             <defs>
               <linearGradient id="color1" x1="0" y1="0" x2="1" y2="2">
                 <stop offset="5%" stopColor="#CC8E31" stopOpacity={0.7} />
