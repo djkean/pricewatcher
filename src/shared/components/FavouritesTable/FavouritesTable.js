@@ -23,7 +23,7 @@ export function FavouritesTable() {
       <div className="table--page">
         <h2 className="favourites--title">Your Favourites</h2>
         <section className="product--list--count">
-          There are {localValues.length} items!
+          You have {localValues.length} favourites!
         </section>
         <table className="product--list--table">
           <thead>
