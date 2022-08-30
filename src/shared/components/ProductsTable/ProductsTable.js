@@ -44,14 +44,12 @@ export function ProductsTable({ apiResults }) {
       index < currentPage * itemsPerPage &&
       index > (currentPage - 1) * itemsPerPage
   );
-  console.log(pageInfo);
 
   if (catalogueItems?.length === 0) return <Loader />;
   return (
     <div>
       <section className="product--list--count">
-        There are {catalogueItems.length} items! Search:
-        <input className="item--search-field" placeholder="Item Name"></input>
+        There are {catalogueItems.length} items!
       </section>
       <button
         className="button--page"
@@ -60,6 +58,9 @@ export function ProductsTable({ apiResults }) {
       >
         {previousPage}
       </button>
+      <span className="page--current--top">
+        Page {currentPage} of {maxPages}
+      </span>
       <button
         className="button--page"
         onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
@@ -107,20 +108,25 @@ export function ProductsTable({ apiResults }) {
             ))}
         </tbody>
       </table>
-      <button
-        className="button--page"
-        onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
-        disabled={currentPage - 1 < 1 ? true : false}
-      >
-        {previousPage}
-      </button>
-      <button
-        className="button--page"
-        onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
-        disabled={currentPage >= maxPages ? true : false}
-      >
-        {progressPage}
-      </button>
+      <div className="page--buttons">
+        <button
+          className="button--page"
+          onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
+          disabled={currentPage - 1 < 1 ? true : false}
+        >
+          {previousPage}
+        </button>
+        <span className="page--current--bottom">
+          Page {currentPage} of {maxPages}
+        </span>
+        <button
+          className="button--page"
+          onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
+          disabled={currentPage >= maxPages ? true : false}
+        >
+          {progressPage}
+        </button>
+      </div>
     </div>
   );
 }

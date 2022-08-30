@@ -194,8 +194,8 @@ h2 {
 
 .product--list--count {
   padding-left: 0.3em;
-  margin-bottom: 0.5em;
   color: var(--baseText);
+  margin-bottom: 1em;
 }
 
 .product {
@@ -268,11 +268,11 @@ h2 {
 }
 
 .favourites--title {
-  padding: 0.5em 0;
+  padding: 0.5em 0 0.5em 0;
 }
 
 .products--title {
-  padding: 0.5em 0;
+  padding: 0.5em;
 }
 
 .stats--break {
@@ -311,4 +311,37 @@ h2 {
   color: var(--lowColor);
   font-weight: bold;
   font-size: 110%;
+}
+
+.page--current--top {
+  margin-right: 1em;
+}
+
+.page--current--bottom {
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
+.button--page {
+  background-color: var(--tableBackground);
+  color: var(--baseText);
+  line-height: 1em;
+  padding: 0.7em 1.8em;
+  margin: 1em 1em 1em 0;
+  border-radius: 0.55em;
+}
+
+.button--page:hover {
+  transform: scale(1.1);
+  color: var(--navHoverLink);
+}
+
+.button--page:disabled {
+  color: var(--navHoverLink);
+  background-color: var(--baseBackground);
+  border: solid 2px var(--backgroundDark);
+}
+
+.favourites--button:hover {
+  transform: scale(1.1);
 }
