@@ -35,7 +35,7 @@ export function ProductsTable({ apiResults }) {
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;
-  const maxPages = Math.round(catalogueItems.length / itemsPerPage);
+  const totalPages = Math.round(catalogueItems.length / itemsPerPage);
   const itemPage = catalogueItems.filter(
     (_, index) =>
       index < currentPage * itemsPerPage &&
@@ -56,12 +56,12 @@ export function ProductsTable({ apiResults }) {
         {previousPage}
       </button>
       <span className="page--current--top">
-        Page {currentPage} of {maxPages}
+        Page {currentPage} of {totalPages}
       </span>
       <button
         className="button--page"
         onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
-        disabled={currentPage >= maxPages ? true : false}
+        disabled={currentPage >= totalPages ? true : false}
       >
         {progressPage}
       </button>
@@ -114,12 +114,12 @@ export function ProductsTable({ apiResults }) {
           {previousPage}
         </button>
         <span className="page--current--bottom">
-          Page {currentPage} of {maxPages}
+          Page {currentPage} of {totalPages}
         </span>
         <button
           className="button--page"
           onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
-          disabled={currentPage >= maxPages ? true : false}
+          disabled={currentPage >= totalPages ? true : false}
         >
           {progressPage}
         </button>
