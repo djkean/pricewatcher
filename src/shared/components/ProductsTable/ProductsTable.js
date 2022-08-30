@@ -4,7 +4,6 @@ import { Loader } from "../Loader";
 import { itemImage } from "../../../API/API";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { favIcon } from "../images/addFavourite";
-import { usePagination } from "../../../Hooks/usePagination";
 
 const addFavourite = (item) => {
   let tempStorage = [];
@@ -36,8 +35,6 @@ export function ProductsTable({ apiResults }) {
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;
-  const itemLength = catalogueItems.length ?? 0;
-  const pageInfo = usePagination({ itemLength, itemsPerPage, currentPage });
   const maxPages = Math.round(catalogueItems.length / itemsPerPage);
   const itemPage = catalogueItems.filter(
     (_, index) =>
