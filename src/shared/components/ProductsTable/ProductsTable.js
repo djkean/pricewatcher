@@ -28,6 +28,7 @@ export function ProductsTable({ apiResults }) {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [catalogueItems, setCatalogueItems] = useState([]);
+  const [searchItems, setSearchItems] = useState("");
   useEffect(() => {
     setCatalogueItems(apiResults);
   }, [apiResults]);
@@ -35,18 +36,66 @@ export function ProductsTable({ apiResults }) {
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;
-  const totalPages = Math.round(catalogueItems.length / itemsPerPage);
-  const itemPage = catalogueItems.filter(
-    (_, index) =>
-      index < currentPage * itemsPerPage &&
-      index > (currentPage - 1) * itemsPerPage
+  const totalPages = Math.round(
+    catalogueItems.filter(
+      (searchResults) => searchResults.name.indexOf(searchItems) > -1
+    ).length / itemsPerPage
   );
+  const itemPage = catalogueItems
+    .filter((searchResults) => searchResults.name.indexOf(searchItems) > -1)
+    .filter(
+      (_, index) =>
+        index < currentPage * itemsPerPage &&
+        index > (currentPage - 1) * itemsPerPage
+    );
 
+  const handleSearch = (searchValue) => {
+    return setSearchItems(searchValue);
+  };
   if (catalogueItems?.length === 0) return <Loader />;
+
+  if (
+    catalogueItems.filter((searchResults) =>
+      searchResults.name.includes(searchItems)
+    ).length === 0
+  ) {
+    return (
+      <div>
+        <section className="itemlist--search">
+          Search:
+          <input
+            className="itemlist--search--field"
+            placeholder="Item Name"
+            type="text"
+            onChange={(e) => handleSearch(e.target.value)}
+          ></input>
+        </section>
+        <section className="product--list--count">
+          No items matched your search
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div>
+      <section className="itemlist--search">
+        Search:
+        <input
+          className="itemlist--search--field"
+          placeholder="Item Name"
+          type="text"
+          onChange={(e) => handleSearch(e.target.value)}
+        ></input>
+      </section>
       <section className="product--list--count">
-        There are {catalogueItems.length} items!
+        There are{" "}
+        {
+          catalogueItems.filter(
+            (searchResults) => searchResults.name.indexOf(searchItems) > -1
+          ).length
+        }{" "}
+        items!
       </section>
       <button
         className="button--page"
@@ -76,7 +125,9 @@ export function ProductsTable({ apiResults }) {
           </tr>
         </thead>
         <tbody>
-          {catalogueItems.length > 0 &&
+          {catalogueItems.filter(
+            (searchResults) => searchResults.name.indexOf(searchItems) > -1
+          ) &&
             itemPage.map((item) => (
               <tr key={item.id}>
                 <td className="table--image">
