@@ -21,7 +21,7 @@ const addFavourite = (item) => {
   return tempStorage;
 };
 
-export function ProductsTable({ apiResults }) {
+export function ItemsTable({ apiResults }) {
   const [localValues, setLocalValues] = useLocalStorage(
     "favourites",
     localStorage.getItem("favourites")
@@ -38,11 +38,15 @@ export function ProductsTable({ apiResults }) {
   const itemsPerPage = 50;
   const totalPages = Math.round(
     catalogueItems.filter(
-      (searchResults) => searchResults.name.indexOf(searchItems) > -1
+      (searchResults) =>
+        searchResults.name.toLowerCase().indexOf(searchItems.toLowerCase()) > -1
     ).length / itemsPerPage
   );
   const itemPage = catalogueItems
-    .filter((searchResults) => searchResults.name.indexOf(searchItems) > -1)
+    .filter(
+      (searchResults) =>
+        searchResults.name.toLowerCase().indexOf(searchItems.toLowerCase()) > -1
+    )
     .filter(
       (_, index) =>
         index < currentPage * itemsPerPage &&
@@ -56,22 +60,22 @@ export function ProductsTable({ apiResults }) {
 
   if (
     catalogueItems.filter((searchResults) =>
-      searchResults.name.includes(searchItems)
+      searchResults.name.toLowerCase().includes(searchItems.toLowerCase())
     ).length === 0
   ) {
     return (
       <div>
         <section className="itemlist--search">
-          Search:
           <input
             className="itemlist--search--field"
-            placeholder="Item Name"
+            placeholder="Search by item name"
             type="text"
             onChange={(e) => handleSearch(e.target.value)}
           ></input>
         </section>
-        <section className="product--list--count">
-          No items matched your search
+        <section className="itemlist--no--matches">
+          <span className="itemlist--number">0 </span> items matched your
+          search.
         </section>
       </div>
     );
@@ -80,22 +84,25 @@ export function ProductsTable({ apiResults }) {
   return (
     <div>
       <section className="itemlist--search">
-        Search:
         <input
           className="itemlist--search--field"
-          placeholder="Item Name"
+          placeholder="Search by item name"
           type="text"
           onChange={(e) => handleSearch(e.target.value)}
         ></input>
       </section>
-      <section className="product--list--count">
-        There are{" "}
-        {
-          catalogueItems.filter(
-            (searchResults) => searchResults.name.indexOf(searchItems) > -1
-          ).length
-        }{" "}
-        items!
+      <section className="itemlist--count">
+        <span className="itemlist--number">
+          {
+            catalogueItems.filter(
+              (searchResults) =>
+                searchResults.name
+                  .toLowerCase()
+                  .indexOf(searchItems.toLowerCase()) > -1
+            ).length
+          }
+        </span>{" "}
+        items matched your search.
       </section>
       <button
         className="button--page"
@@ -114,7 +121,7 @@ export function ProductsTable({ apiResults }) {
       >
         {progressPage}
       </button>
-      <table className="product--list--table">
+      <table className="itemlist--table">
         <thead>
           <tr>
             <th className="table--image"></th>
@@ -126,7 +133,10 @@ export function ProductsTable({ apiResults }) {
         </thead>
         <tbody>
           {catalogueItems.filter(
-            (searchResults) => searchResults.name.indexOf(searchItems) > -1
+            (searchResults) =>
+              searchResults.name
+                .toLowerCase()
+                .indexOf(searchItems.toLowerCase()) > -1
           ) &&
             itemPage.map((item) => (
               <tr key={item.id}>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { itemImage } from "../ProductList/ProductList";
+import { itemImage } from "../ItemList/ItemList";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { unfavIcon } from "../images/removeFavourite";
 import { Break } from "../Break";
@@ -22,10 +22,10 @@ export function FavouritesTable() {
     <>
       <div className="table--page">
         <h2 className="favourites--title">Your Favourites</h2>
-        <section className="product--list--count">
+        <section className="itemlist--count">
           You have {localValues.length} favourites!
         </section>
-        <table className="product--list--table">
+        <table className="itemlist--table">
           <thead>
             <tr>
               <th className="table--image">Image</th>
@@ -48,7 +48,7 @@ export function FavouritesTable() {
                   <td>
                     <Link
                       key={item.id}
-                      to={"/Product/" + item.id}
+                      to={"/Item/" + item.id}
                       state={{ data: item }}
                     >
                       {item.name}
@@ -71,8 +71,8 @@ export function FavouritesTable() {
                 <td colSpan={4}>
                   {" "}
                   You haven't set any favourites. You can do so on our{" "}
-                  <Link className="no--favourites--link" to="/ProductList">
-                    Products
+                  <Link className="no--favourites--link" to="/ItemList">
+                    Items
                   </Link>{" "}
                   page.
                 </td>

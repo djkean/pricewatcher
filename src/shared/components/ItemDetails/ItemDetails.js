@@ -4,9 +4,10 @@ import { PriceGraph } from "../PriceGraph";
 import { Break } from "../Break";
 import { VolumeGraph } from "../VolumeGraph";
 import { itemImage, itemTimestampUrl } from "../../../API/API.js";
-export function Product() {
+
+export function ItemDetails() {
   const routeParams = useParams();
-  const productID = routeParams.id;
+  const itemsID = routeParams.id;
   const itemData = useLocation();
   const [apiResults, setApiResults] = useState({
     volumeData: null,
@@ -15,7 +16,7 @@ export function Product() {
 
   const fetchExchangeData = () => {
     try {
-      fetch(itemTimestampUrl(productID, "5m"))
+      fetch(itemTimestampUrl(itemsID, "5m"))
         .then((response) => response.json())
         .then((itemPriceData) => {
           setApiResults((apiResults) => ({
@@ -42,19 +43,19 @@ export function Product() {
   }, []);
 
   return (
-    <article className="product">
+    <article className="item">
       <Break />
-      <div className="product--card">
-        <section className="product--details">
-          <div className="product--head">
+      <div className="item--card">
+        <section className="item--details">
+          <div className="item--head">
             <img
               src={itemImage(itemData.state.data.icon.replace(/ /g, "_"))}
-              className="product--image"
+              className="item--image"
               alt=" "
             />
             <div>
-              <h2 className="product--name">{itemData.state?.data.name}</h2>
-              <span className="product--id"> - {productID}</span>
+              <h2 className="item--name">{itemData.state?.data.name}</h2>
+              <span className="item--id"> - {itemsID}</span>
             </div>
           </div>
           <span>
@@ -62,7 +63,7 @@ export function Product() {
           </span>
           <span>Buy Limit: {itemData.state?.data.limit}</span>
         </section>
-        <section className="product--stats">
+        <section className="item--stats">
           <table>
             <tbody>
               <tr>
@@ -99,20 +100,3 @@ export function Product() {
     </article>
   );
 }
-
-/*           <div>
-            High Price:
-            {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ?? "N/A"}
-          </div>
-          <div className="stats--break"> | </div>
-          <div>
-            Low Price:
-            {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "N/A"}
-          </div>
-        </div>
-        <div>
-          High Volume:
-          {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
-          Low Volume:
-          {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
-        </div> */

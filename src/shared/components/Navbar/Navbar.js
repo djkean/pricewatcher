@@ -8,9 +8,7 @@ export function Navbar() {
         OSRS PriceWatcher
       </Link>
       <span className="nav--search">
-        Search:
-        <input className="nav--search-field" placeholder="Item Name"></input>
-        <Link className="nav--link" to="/">
+        <Link className="nav--link--home" to="/">
           Home
         </Link>
         <Link className="nav--link" to="/ItemList">

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Loader } from "../Loader";
-import { ProductsTable } from "../ProductsTable/ProductsTable";
+import { ItemsTable } from "../ItemsTable/ItemsTable";
 
 const catalogueAPI = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 export const itemPriceAPI = "https://prices.runescape.wiki/api/v1/osrs/latest";
 export const itemImage = (itemID) =>
   `https://oldschool.runescape.wiki/images/a/a2/${itemID}`;
 
-export function Products() {
+export function Items() {
   const [catalogue, setCatalogue] = useState([]);
 
   const fetchCatalogue = async () => {
@@ -25,7 +25,7 @@ export function Products() {
       {catalogue.length === 0 ? (
         <Loader />
       ) : (
-        <ProductsTable apiResults={catalogue} />
+        <ItemsTable apiResults={catalogue} />
       )}
     </>
   );
