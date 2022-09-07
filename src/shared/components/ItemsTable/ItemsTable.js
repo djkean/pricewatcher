@@ -28,10 +28,21 @@ export function ItemsTable({ apiResults }) {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [catalogueItems, setCatalogueItems] = useState([]);
-  const [searchItems, setSearchItems] = useState("");
+  const [matchingItems, setMatchingItems] = useState([]);
   useEffect(() => {
     setCatalogueItems(apiResults);
   }, [apiResults]);
+
+  const getMatchingItems = (searchValue) => {
+    const filteredItems = catalogueItems.filter((catalogueItem) =>
+      catalogueItem.name.toLowerCase().indexOf(searchValue.toLowerCase())
+    );
+    return filteredItems;
+  };
+
+  const handleChange = (searchValue) => {
+    return getMatchingItems(searchValue);
+  };
 
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
@@ -42,7 +53,7 @@ export function ItemsTable({ apiResults }) {
         searchResults.name.toLowerCase().indexOf(searchItems.toLowerCase()) > -1
     ).length / itemsPerPage
   );
-  const itemPage = catalogueItems
+  const itemsOnCurrentPage = catalogueItems
     .filter(
       (searchResults) =>
         searchResults.name.toLowerCase().indexOf(searchItems.toLowerCase()) > -1
@@ -53,9 +64,6 @@ export function ItemsTable({ apiResults }) {
         index > (currentPage - 1) * itemsPerPage
     );
 
-  const handleSearch = (searchValue) => {
-    return setSearchItems(searchValue);
-  };
   if (catalogueItems?.length === 0) return <Loader />;
 
   if (
@@ -70,7 +78,7 @@ export function ItemsTable({ apiResults }) {
             className="itemlist--search--field"
             placeholder="Search by item name"
             type="text"
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => handleChange(e.target.value)}
           ></input>
         </section>
         <section className="itemlist--no--matches">
@@ -88,7 +96,7 @@ export function ItemsTable({ apiResults }) {
           className="itemlist--search--field"
           placeholder="Search by item name"
           type="text"
-          onChange={(e) => handleSearch(e.target.value)}
+          onChange={(e) => handleChange(e.target.value)}
         ></input>
       </section>
       <section className="itemlist--count">
@@ -138,7 +146,7 @@ export function ItemsTable({ apiResults }) {
                 .toLowerCase()
                 .indexOf(searchItems.toLowerCase()) > -1
           ) &&
-            itemPage.map((item) => (
+            itemsOnCurrentPage.map((item) => (
               <tr key={item.id}>
                 <td className="table--image">
                   <img src={itemImage(item.icon.replace(/ /g, "_"))} alt=" " />
