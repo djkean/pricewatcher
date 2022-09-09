@@ -369,7 +369,10 @@ h2 {
   margin-bottom: 2em;
   border-radius: 5px;
   border: solid 2px var(--backgroundDark);
-  font-size: 0.9em;
+  font-size: 1em;
+  padding: 0 0.5em;
+  letter-spacing: 0.0625em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .itemlist--number {

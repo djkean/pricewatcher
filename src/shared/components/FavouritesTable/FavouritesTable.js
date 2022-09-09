@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { itemImage } from "../ItemList/ItemList";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
@@ -13,9 +13,20 @@ const removeFavourite = (id) => {
 };
 
 export function FavouritesTable() {
+  const [currentPage, setCurrentPage] = useState(1);
   const [localValues, setLocalValues] = useLocalStorage(
     "favourites",
     localStorage.getItem("favourites")
+  );
+
+  const previousPage = currentPage - 1;
+  const progressPage = currentPage + 1;
+  const itemsPerPage = 50;
+  const totalPages = Math.ceil(localValues.length / itemsPerPage);
+  const itemsOnCurrentPage = localValues.filter(
+    (_, index) =>
+      index <= currentPage * itemsPerPage &&
+      index >= (currentPage - 1) * itemsPerPage
   );
 
   return (
@@ -25,6 +36,23 @@ export function FavouritesTable() {
         <section className="itemlist--count">
           You have {localValues.length} favourites!
         </section>
+        <button
+          className="button--page"
+          onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
+          disabled={currentPage - 1 < 1 ? true : false}
+        >
+          {previousPage}
+        </button>
+        <span className="page--current--top">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className="button--page"
+          onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
+          disabled={currentPage >= totalPages ? true : false}
+        >
+          {progressPage}
+        </button>
         <table className="itemlist--table">
           <thead>
             <tr>
@@ -36,8 +64,8 @@ export function FavouritesTable() {
             </tr>
           </thead>
           <tbody>
-            {localValues.length > 0 ? (
-              localValues.map((item) => (
+            {itemsOnCurrentPage.length > 0 ? (
+              itemsOnCurrentPage.map((item) => (
                 <tr key={item.id}>
                   <td className="table--image">
                     <img
@@ -80,6 +108,25 @@ export function FavouritesTable() {
             )}
           </tbody>
         </table>
+        <div className="page--buttons">
+          <button
+            className="button--page"
+            onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
+            disabled={currentPage - 1 < 1 ? true : false}
+          >
+            {previousPage}
+          </button>
+          <span className="page--current--bottom">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className="button--page"
+            onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
+            disabled={currentPage >= totalPages ? true : false}
+          >
+            {progressPage}
+          </button>
+        </div>
       </div>
       <Break />
     </>

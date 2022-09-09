@@ -31,46 +31,35 @@ export function ItemsTable({ apiResults }) {
   const [matchingItems, setMatchingItems] = useState([]);
   useEffect(() => {
     setCatalogueItems(apiResults);
+    setMatchingItems(apiResults);
   }, [apiResults]);
 
   const getMatchingItems = (searchValue) => {
-    const filteredItems = catalogueItems.filter((catalogueItem) =>
-      catalogueItem.name.toLowerCase().indexOf(searchValue.toLowerCase())
+    const filteredItems = catalogueItems.filter(
+      (catalogueItem) =>
+        catalogueItem.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
     );
-    return filteredItems;
+    setMatchingItems(filteredItems);
   };
 
   const handleChange = (searchValue) => {
+    setCurrentPage(1);
     return getMatchingItems(searchValue);
   };
 
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;
-  const totalPages = Math.round(
-    catalogueItems.filter(
-      (searchResults) =>
-        searchResults.name.toLowerCase().indexOf(searchItems.toLowerCase()) > -1
-    ).length / itemsPerPage
+  const totalPages = Math.ceil(matchingItems.length / itemsPerPage);
+  const itemsOnCurrentPage = matchingItems.filter(
+    (_, index) =>
+      index <= currentPage * itemsPerPage &&
+      index >= (currentPage - 1) * itemsPerPage
   );
-  const itemsOnCurrentPage = catalogueItems
-    .filter(
-      (searchResults) =>
-        searchResults.name.toLowerCase().indexOf(searchItems.toLowerCase()) > -1
-    )
-    .filter(
-      (_, index) =>
-        index < currentPage * itemsPerPage &&
-        index > (currentPage - 1) * itemsPerPage
-    );
 
   if (catalogueItems?.length === 0) return <Loader />;
 
-  if (
-    catalogueItems.filter((searchResults) =>
-      searchResults.name.toLowerCase().includes(searchItems.toLowerCase())
-    ).length === 0
-  ) {
+  if (matchingItems.length === 0) {
     return (
       <div>
         <section className="itemlist--search">
@@ -101,14 +90,7 @@ export function ItemsTable({ apiResults }) {
       </section>
       <section className="itemlist--count">
         <span className="itemlist--number">
-          {
-            catalogueItems.filter(
-              (searchResults) =>
-                searchResults.name
-                  .toLowerCase()
-                  .indexOf(searchItems.toLowerCase()) > -1
-            ).length
-          }
+          {matchingItems.length.toLocaleString()}
         </span>{" "}
         items matched your search.
       </section>
@@ -140,38 +122,32 @@ export function ItemsTable({ apiResults }) {
           </tr>
         </thead>
         <tbody>
-          {catalogueItems.filter(
-            (searchResults) =>
-              searchResults.name
-                .toLowerCase()
-                .indexOf(searchItems.toLowerCase()) > -1
-          ) &&
-            itemsOnCurrentPage.map((item) => (
-              <tr key={item.id}>
-                <td className="table--image">
-                  <img src={itemImage(item.icon.replace(/ /g, "_"))} alt=" " />
-                </td>
-                <td>
-                  <Link
-                    key={item.id}
-                    to={"/Item/" + item.id}
-                    state={{ data: item }}
-                  >
-                    {item.name}
-                  </Link>
-                </td>
-                <td></td>
-                <td></td>
-                <td className="table--image">
-                  <button
-                    className="favourites--button"
-                    onClick={() => setLocalValues(addFavourite(item))}
-                  >
-                    {favIcon}
-                  </button>
-                </td>
-              </tr>
-            ))}
+          {itemsOnCurrentPage.map((item) => (
+            <tr key={item.id}>
+              <td className="table--image">
+                <img src={itemImage(item.icon.replace(/ /g, "_"))} alt=" " />
+              </td>
+              <td>
+                <Link
+                  key={item.id}
+                  to={"/Item/" + item.id}
+                  state={{ data: item }}
+                >
+                  {item.name}
+                </Link>
+              </td>
+              <td></td>
+              <td></td>
+              <td className="table--image">
+                <button
+                  className="favourites--button"
+                  onClick={() => setLocalValues(addFavourite(item))}
+                >
+                  {favIcon}
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <div className="page--buttons">
