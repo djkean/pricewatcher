@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { PriceGraph } from "../PriceGraph";
-import { Break } from "../Break";
 import { VolumeGraph } from "../VolumeGraph";
 import { itemImage, itemTimestampUrl } from "../../../API/API.js";
 
@@ -44,7 +43,6 @@ export function ItemDetails() {
 
   return (
     <article className="item">
-      <Break />
       <div className="item--card">
         <section className="item--details">
           <div className="item--head">
@@ -92,11 +90,8 @@ export function ItemDetails() {
           </table>
         </section>
       </div>
-      <Break />
       <PriceGraph priceGraphData={apiResults.volumeData} />
-      <Break />
       <VolumeGraph volumeGraphData={apiResults.volumeData} />
-      <Break />
     </article>
   );
 }

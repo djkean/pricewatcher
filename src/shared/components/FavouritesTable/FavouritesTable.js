@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { itemImage } from "../ItemList/ItemList";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { unfavIcon } from "../images/removeFavourite";
-import { Break } from "../Break";
 
 const removeFavourite = (id) => {
   const favList = JSON.parse(localStorage.getItem("favourites"));
@@ -30,7 +29,7 @@ export function FavouritesTable() {
   );
 
   return (
-    <>
+    <div className="page">
       <div className="table--page">
         <h2 className="favourites--title">Your Favourites</h2>
         <section className="itemlist--count">
@@ -128,7 +127,6 @@ export function FavouritesTable() {
           </button>
         </div>
       </div>
-      <Break />
-    </>
+    </div>
   );
 }

@@ -217,6 +217,10 @@ h2 {
 .item {
   color: var(--baseText);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 2em 0;
 }
 
 .item--head {
