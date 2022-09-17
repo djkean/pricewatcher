@@ -12,10 +12,10 @@ const addFavourite = (item) => {
     return tempStorage;
   }
   tempStorage = JSON.parse(localStorage.getItem("favourites"));
-  const dupeCheck = tempStorage.filter(
+  const checkForDuplicates = tempStorage.filter(
     (favItem) => favItem.id === item.id
   ).length;
-  if (dupeCheck === 0) {
+  if (checkForDuplicates === 0) {
     tempStorage.push(item);
   }
   return tempStorage;
