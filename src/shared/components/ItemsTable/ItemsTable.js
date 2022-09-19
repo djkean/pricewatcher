@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Loader } from "../Loader";
 import { itemImage } from "../../../API/API";
@@ -51,11 +51,14 @@ export function ItemsTable({ apiResults }) {
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;
   const totalPages = Math.ceil(matchingItems.length / itemsPerPage);
-  const itemsOnCurrentPage = matchingItems.filter(
-    (_, index) =>
-      index <= currentPage * itemsPerPage &&
-      index >= (currentPage - 1) * itemsPerPage
-  );
+  const itemsOnCurrentPage = useMemo(() => {
+    const itemsOnPageMemo = matchingItems.filter(
+      (_, index) =>
+        index <= currentPage * itemsPerPage &&
+        index >= (currentPage - 1) * itemsPerPage
+    );
+    return itemsOnPageMemo;
+  }, [currentPage, matchingItems]);
 
   if (catalogueItems?.length === 0) return <Loader />;
 

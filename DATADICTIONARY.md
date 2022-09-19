@@ -4,21 +4,21 @@
 
 ## itemID
 
-- Declared and used in /API.js
+- Defined and used in /API.js
 - Value represents a number
 - Used as argument for API calls for specific items and their information
 - Value is defined by Runescape wiki APIs and represents a static value
 
 ## timeStep
 
-- Declared and used in /API.js
+- Defined and used in /API.js
 - Value represents a string
 - Used as argument for API calls for predetermined time peroids and pertinent time-based data
 - Value is defined by Runescape wiki APIs and represents a time period to base fetched information from
 
 ## id
 
-- Declared and used in /FavouritesTable.js
+- Defined and used in /FavouritesTable.js
 - Value represents a number
 - Used to identify individual items and pertains to existed identification values determined by information returned from API calls
 - Value is defined by the project but based off predetermined API information
