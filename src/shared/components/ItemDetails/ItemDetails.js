@@ -62,7 +62,35 @@ export function ItemDetails() {
           <span>Buy Limit: {itemData.state?.data.limit}</span>
         </section>
         <section className="item--stats">
-          <table>
+          <div className="item--flexbox">
+            <div className="item--flex--stats">High Price:</div>
+            <div className="item--flex--stats" id="high--price--number">
+              {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ??
+                "N/A"}
+            </div>
+            <div className="item--flex--stats">Low Price:</div>
+            <div className="item--flex--stats" id="low--price--number">
+              {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "N/A"}
+            </div>
+            <div className="item--flex--stats">High Volume:</div>
+            <div className="item--flex--stats" id="high--vol--number">
+              {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
+            </div>
+            <div className="item--flex--stats">Low Volume:</div>
+            <div className="item--flex--stats" id="low--vol--number">
+              {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
+            </div>
+          </div>
+        </section>
+      </div>
+      <PriceGraph priceGraphData={apiResults.volumeData} />
+      <VolumeGraph volumeGraphData={apiResults.volumeData} />
+    </article>
+  );
+}
+
+/* 
+<table>
             <tbody>
               <tr>
                 <td>High Price:</td>
@@ -88,10 +116,4 @@ export function ItemDetails() {
               </tr>
             </tbody>
           </table>
-        </section>
-      </div>
-      <PriceGraph priceGraphData={apiResults.volumeData} />
-      <VolumeGraph volumeGraphData={apiResults.volumeData} />
-    </article>
-  );
-}
+*/

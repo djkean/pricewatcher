@@ -261,7 +261,7 @@ h2 {
   border-radius: 19px;
   box-shadow: 5px 5px 5px var(--fieldText);
   margin: auto;
-  width: 525px;
+  width: 600px;
 }
 
 .pricegraph--card {
@@ -381,4 +381,35 @@ h2 {
 
 .itemlist--number {
   font-weight: bold;
+}
+
+.item--flexbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item--flexbox > * {
+  flex: 1 1 25%;
+  text-align: left;
+  padding: 0.3em 0 0.3em 1.2em;
+}
+
+#high--price--number {
+  font-weight: bold;
+  color: var(--highColor);
+}
+
+#high--vol--number {
+  font-weight: bold;
+  color: var(--highColor);
+}
+
+#low--price--number {
+  font-weight: bold;
+  color: var(--lowColor);
+}
+
+#low--vol--number {
+  font-weight: bold;
+  color: var(--lowColor);
 }
