@@ -63,21 +63,21 @@ export function ItemDetails() {
         </section>
         <section className="item--stats">
           <div className="item--flexbox">
-            <div className="item--flex--stats">High Price:</div>
-            <div className="item--flex--stats" id="high--price--number">
+            <div className="flex--stats">High Price:</div>
+            <div className="flex--stats" id="high--price--number">
               {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ??
                 "N/A"}
             </div>
-            <div className="item--flex--stats">Low Price:</div>
-            <div className="item--flex--stats" id="low--price--number">
+            <div className="flex--stats">Low Price:</div>
+            <div className="flex--stats" id="low--price--number">
               {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "N/A"}
             </div>
-            <div className="item--flex--stats">High Volume:</div>
-            <div className="item--flex--stats" id="high--vol--number">
+            <div className="flex--stats">High Volume:</div>
+            <div className="flex--stats" id="high--vol--number">
               {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
             </div>
-            <div className="item--flex--stats">Low Volume:</div>
-            <div className="item--flex--stats" id="low--vol--number">
+            <div className="flex--stats">Low Volume:</div>
+            <div className="flex--stats" id="low--vol--number">
               {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
             </div>
           </div>
@@ -88,32 +88,3 @@ export function ItemDetails() {
     </article>
   );
 }
-
-/* 
-<table>
-            <tbody>
-              <tr>
-                <td>High Price:</td>
-                <td className="color--high">
-                  {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ??
-                    "N/A"}
-                </td>
-                <td>Low Price:</td>
-                <td className="color--low">
-                  {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ??
-                    "N/A"}
-                </td>
-              </tr>
-              <tr>
-                <td>High Volume:</td>
-                <td className="color--high">
-                  {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
-                </td>
-                <td>Low Volume:</td>
-                <td className="color--low">
-                  {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-*/

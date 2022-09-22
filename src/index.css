@@ -320,19 +320,6 @@ h2 {
   text-align: left;
 }
 
-.color--high {
-  color: var(--highColor);
-  font-weight: bold;
-  font-size: 110%;
-  
-}
-
-.color--low {
-  color: var(--lowColor);
-  font-weight: bold;
-  font-size: 110%;
-}
-
 .page--current--top {
   margin-right: 1em;
 }
@@ -388,7 +375,7 @@ h2 {
   flex-wrap: wrap;
 }
 
-.item--flexbox > * {
+.flex--stats {
   flex: 1 1 25%;
   text-align: left;
   padding: 0.3em 0 0.3em 1.2em;
@@ -397,19 +384,23 @@ h2 {
 #high--price--number {
   font-weight: bold;
   color: var(--highColor);
+  font-size: 110%;
 }
 
 #high--vol--number {
   font-weight: bold;
   color: var(--highColor);
+  font-size: 110%;
 }
 
 #low--price--number {
   font-weight: bold;
   color: var(--lowColor);
+  font-size: 110%;
 }
 
 #low--vol--number {
   font-weight: bold;
   color: var(--lowColor);
+  font-size: 110%;
 }
