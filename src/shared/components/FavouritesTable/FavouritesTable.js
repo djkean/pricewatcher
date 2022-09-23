@@ -55,11 +55,10 @@ export function FavouritesTable() {
         <table className="itemlist--table">
           <thead>
             <tr>
-              <th className="table--image">Image</th>
+              <th className="table--image"></th>
               <th className="table--name">Item Name</th>
               <th>High Price</th>
               <th>Low Price</th>
-              <th className="table--image"></th>
             </tr>
           </thead>
           <tbody>
@@ -80,10 +79,6 @@ export function FavouritesTable() {
                     >
                       {item.name}
                     </Link>
-                  </td>
-                  <td></td>
-                  <td></td>
-                  <td className="table--image">
                     <button
                       className="favourites--button"
                       onClick={() => setLocalValues(removeFavourite(item.id))}
@@ -91,6 +86,8 @@ export function FavouritesTable() {
                       {unfavIcon}
                     </button>
                   </td>
+                  <td></td>
+                  <td></td>
                 </tr>
               ))
             ) : (

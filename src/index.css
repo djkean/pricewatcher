@@ -353,9 +353,9 @@ h2 {
   text-align: right;
   float: right;
   background-color: var(--backgroundDark);
-  border: solid 1px var(--baseBackground);
+  border: solid 1px black;
   border-radius: 20px;
-  padding-top: 0.3em;
+  padding: 0.35em 0.35em 0.2em 0.35em;
   margin-top: 0.12em;
 }
 
