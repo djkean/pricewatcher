@@ -121,7 +121,6 @@ export function ItemsTable({ apiResults }) {
             <th className="table--name">Item Name</th>
             <th>High Price</th>
             <th>Low Price</th>
-            <th className="table--image"></th>
           </tr>
         </thead>
         <tbody>
@@ -138,10 +137,6 @@ export function ItemsTable({ apiResults }) {
                 >
                   {item.name}
                 </Link>
-              </td>
-              <td></td>
-              <td></td>
-              <td className="table--image">
                 <button
                   className="favourites--button"
                   onClick={() => setLocalValues(addFavourite(item))}
@@ -149,6 +144,8 @@ export function ItemsTable({ apiResults }) {
                   {favIcon}
                 </button>
               </td>
+              <td></td>
+              <td></td>
             </tr>
           ))}
         </tbody>

@@ -349,8 +349,18 @@ h2 {
   border: solid 2px var(--backgroundDark);
 }
 
+.favourites--button {
+  text-align: right;
+  float: right;
+  background-color: var(--backgroundDark);
+  border: solid 1px var(--baseBackground);
+  border-radius: 20px;
+  padding-top: 0.3em;
+  margin-top: 0.12em;
+}
+
 .favourites--button:hover {
-  transform: scale(1.1);
+  transform: scale(1.35);
 }
 
 .itemlist--search--field {
