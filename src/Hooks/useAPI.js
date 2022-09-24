@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { catalogueAPI } from "../shared/components/ItemList";
+import { catalogueAPI } from "../shared/components/ItemList/ItemList";
 
 export const useFetchApi = () => {
   const [api, setApi] = useState([]);
@@ -14,5 +14,5 @@ export const useFetchApi = () => {
     fetchCatalogue();
   }, []);
 
-  return fetchCatalogue();
+  return api;
 };

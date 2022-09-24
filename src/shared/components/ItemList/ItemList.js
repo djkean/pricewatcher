@@ -9,7 +9,7 @@ export const itemImage = (itemID) =>
   `https://oldschool.runescape.wiki/images/a/a2/${itemID}`;
 
 export function Items() {
-  const { api } = useFetchApi();
+  const api = useFetchApi();
 
   return <>{api.length === 0 ? <Loader /> : <ItemsTable apiResults={api} />}</>;
 }
