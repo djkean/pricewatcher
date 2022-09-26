@@ -173,8 +173,12 @@ export function ItemsTable({ apiResults }) {
                   </Link>
                   {favButton}
                 </td>
-                <td>{item[1][1].high.toLocaleString()}</td>
-                <td>{item[1][1].low.toLocaleString()}</td>
+                <td className="table--high--number">
+                  {item[1][1].high.toLocaleString()}
+                </td>
+                <td className="table--low--number">
+                  {item[1][1].low.toLocaleString()}
+                </td>
               </tr>
             );
           })}

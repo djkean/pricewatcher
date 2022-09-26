@@ -421,12 +421,10 @@ h2 {
 
 .table--high--number {
   color: var(--highColor);
-  font-size: 110%;
   font-weight: bold;
 }
 
 .table--low--number {
   color: var(--lowColor);
-  font-size: 110%;
   font-weight: bold;
 }
