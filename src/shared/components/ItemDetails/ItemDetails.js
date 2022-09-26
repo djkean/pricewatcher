@@ -18,6 +18,25 @@ export function ItemDetails() {
       fetch(itemTimestampUrl(itemsID, "5m"))
         .then((response) => response.json())
         .then((itemPriceData) => {
+          const latestLowPrice = itemPriceData?.data.filter(
+            (priceFilter) =>
+              priceFilter.timestamp ===
+              Math.max(
+                ...itemPriceData.data.map(
+                  (price) => price.avgLowPrice && price.timestamp
+                )
+              )
+          )[0];
+
+          const latestHighPrice = itemPriceData?.data.filter(
+            (priceFilter) =>
+              priceFilter.timestamp ===
+              Math.max(
+                ...itemPriceData.data.map(
+                  (price) => price.avgHighPrice && price.timestamp
+                )
+              )
+          )[0];
           setApiResults((apiResults) => ({
             ...apiResults,
             volumeData: itemPriceData?.data.filter(
@@ -25,11 +44,10 @@ export function ItemDetails() {
                 dataFilter.avgLowPrice != null &&
                 dataFilter.avgHighPrice != null
             ),
-            exchangeData: itemPriceData?.data.filter(
-              (priceFilter) =>
-                priceFilter.timestamp ===
-                Math.max(...itemPriceData.data.map((price) => price.timestamp))
-            )[0],
+            exchangeData: {
+              lowPrice: latestLowPrice,
+              highPrice: latestHighPrice,
+            },
           }));
         });
     } catch (error) {
@@ -65,20 +83,21 @@ export function ItemDetails() {
           <div className="item--flexbox">
             <div className="flex--stats">High Price:</div>
             <div className="flex--stats" id="high--price--number">
-              {apiResults?.exchangeData?.avgHighPrice?.toLocaleString() ??
+              {apiResults?.exchangeData?.highPrice?.avgHighPrice?.toLocaleString() ??
                 "N/A"}
             </div>
             <div className="flex--stats">Low Price:</div>
             <div className="flex--stats" id="low--price--number">
-              {apiResults?.exchangeData?.avgLowPrice?.toLocaleString() ?? "N/A"}
+              {apiResults?.exchangeData?.lowPrice?.avgLowPrice?.toLocaleString() ??
+                "N/A"}
             </div>
             <div className="flex--stats">High Volume:</div>
             <div className="flex--stats" id="high--vol--number">
-              {apiResults?.exchangeData?.highPriceVolume?.toLocaleString()}
+              {apiResults?.exchangeData?.highPrice?.highPriceVolume?.toLocaleString()}
             </div>
             <div className="flex--stats">Low Volume:</div>
             <div className="flex--stats" id="low--vol--number">
-              {apiResults?.exchangeData?.lowPriceVolume?.toLocaleString()}
+              {apiResults?.exchangeData?.lowPrice?.lowPriceVolume?.toLocaleString()}
             </div>
           </div>
         </section>

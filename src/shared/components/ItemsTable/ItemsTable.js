@@ -4,6 +4,8 @@ import { Loader } from "../Loader";
 import { itemImage } from "../../../API/API";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { favIcon } from "../images/addFavourite";
+import { alreadyFavIcon } from "../images/alreadyFavourite";
+import { removeFavourite } from "../FavouritesTable/FavouritesTable";
 
 const addFavourite = (item) => {
   let tempStorage = [];
@@ -13,12 +15,18 @@ const addFavourite = (item) => {
   }
   tempStorage = JSON.parse(localStorage.getItem("favourites"));
   const checkForDuplicates = tempStorage.filter(
-    (favItem) => favItem.id === item.id
+    (favItem) => favItem[0] === item[0]
   ).length;
   if (checkForDuplicates === 0) {
     tempStorage.push(item);
   }
   return tempStorage;
+};
+
+export const checkIfFavourite = (id) => {
+  const favList = JSON.parse(localStorage.getItem("favourites"));
+  if (favList === null) return false;
+  return favList.filter((checkID) => checkID[0] === id).length;
 };
 
 export function ItemsTable({ apiResults }) {
@@ -30,14 +38,19 @@ export function ItemsTable({ apiResults }) {
   const [catalogueItems, setCatalogueItems] = useState([]);
   const [matchingItems, setMatchingItems] = useState([]);
   useEffect(() => {
-    setCatalogueItems(apiResults);
-    setMatchingItems(apiResults);
+    const itemArray = Object.keys(apiResults).map((key) => [
+      Number(key),
+      apiResults[key],
+    ]);
+    setCatalogueItems(itemArray);
+    setMatchingItems(itemArray);
   }, [apiResults]);
 
   const getMatchingItems = (searchValue) => {
     const filteredItems = catalogueItems.filter(
       (catalogueItem) =>
-        catalogueItem.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+        catalogueItem[1].name.toLowerCase().indexOf(searchValue.toLowerCase()) >
+        -1
     );
     setMatchingItems(filteredItems);
   };
@@ -52,11 +65,13 @@ export function ItemsTable({ apiResults }) {
   const itemsPerPage = 50;
   const totalPages = Math.ceil(matchingItems.length / itemsPerPage);
   const itemsOnCurrentPage = useMemo(() => {
-    const itemsOnPageMemo = matchingItems.filter(
-      (_, index) =>
-        index <= currentPage * itemsPerPage &&
-        index >= (currentPage - 1) * itemsPerPage
-    );
+    const itemsOnPageMemo = matchingItems
+      ?.sort((a, b) => a[1].name.localeCompare(b[1].name))
+      ?.filter(
+        (_, index) =>
+          index <= currentPage * itemsPerPage &&
+          index >= (currentPage - 1) * itemsPerPage
+      );
     return itemsOnPageMemo;
   }, [currentPage, matchingItems]);
 
@@ -124,30 +139,45 @@ export function ItemsTable({ apiResults }) {
           </tr>
         </thead>
         <tbody>
-          {itemsOnCurrentPage.map((item) => (
-            <tr key={item.id}>
-              <td className="table--image">
-                <img src={itemImage(item.icon.replace(/ /g, "_"))} alt=" " />
-              </td>
-              <td>
-                <Link
-                  key={item.id}
-                  to={"/Item/" + item.id}
-                  state={{ data: item }}
-                >
-                  {item.name}
-                </Link>
-                <button
-                  className="favourites--button"
-                  onClick={() => setLocalValues(addFavourite(item))}
-                >
-                  {favIcon}
-                </button>
-              </td>
-              <td></td>
-              <td></td>
-            </tr>
-          ))}
+          {itemsOnCurrentPage.map((item) => {
+            const favButton = checkIfFavourite(item[0]) ? (
+              <button
+                className="favourites--button favourites--button--remove"
+                onClick={() => setLocalValues(removeFavourite(item[0]))}
+              >
+                {alreadyFavIcon}
+              </button>
+            ) : (
+              <button
+                className="favourites--button favourites--button--add"
+                onClick={() => setLocalValues(addFavourite(item))}
+              >
+                {favIcon}
+              </button>
+            );
+            return (
+              <tr key={item[0]}>
+                <td className="table--image">
+                  <img
+                    src={itemImage(item[1].icon.replace(/ /g, "_"))}
+                    alt=" "
+                  />
+                </td>
+                <td>
+                  <Link
+                    key={item[0]}
+                    to={"/Item/" + item[0]}
+                    state={{ data: item[1] }}
+                  >
+                    {item[1].name}
+                  </Link>
+                  {favButton}
+                </td>
+                <td>{item[1][1].high.toLocaleString()}</td>
+                <td>{item[1][1].low.toLocaleString()}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <div className="page--buttons">

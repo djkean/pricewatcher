@@ -4,10 +4,10 @@ import { itemImage } from "../ItemList/ItemList";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { unfavIcon } from "../images/removeFavourite";
 
-const removeFavourite = (id) => {
+export const removeFavourite = (id) => {
   const favList = JSON.parse(localStorage.getItem("favourites"));
   if (favList === null) return;
-  const updatedFavourites = favList.filter((checkID) => checkID.id !== id);
+  const updatedFavourites = favList.filter((checkID) => checkID[0] !== id);
   return updatedFavourites;
 };
 
@@ -21,19 +21,24 @@ export function FavouritesTable() {
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;
-  const totalPages = Math.ceil(localValues.length / itemsPerPage);
-  const itemsOnCurrentPage = localValues.filter(
-    (_, index) =>
-      index <= currentPage * itemsPerPage &&
-      index >= (currentPage - 1) * itemsPerPage
-  );
+  const totalPages = localValues?.length
+    ? Math.ceil(localValues?.length / itemsPerPage)
+    : 1;
+  const itemsOnCurrentPage =
+    localValues
+      ?.sort((a, b) => a[1].name.localeCompare(b[1].name))
+      ?.filter(
+        (_, index) =>
+          index <= currentPage * itemsPerPage &&
+          index >= (currentPage - 1) * itemsPerPage
+      ) ?? 0;
 
   return (
     <div className="page">
       <div className="table--page">
         <h2 className="favourites--title">Your Favourites</h2>
         <section className="itemlist--count">
-          You have {localValues.length} favourites!
+          You have {localValues?.length ?? 0} favourites!
         </section>
         <button
           className="button--page"
@@ -64,37 +69,41 @@ export function FavouritesTable() {
           <tbody>
             {itemsOnCurrentPage.length > 0 ? (
               itemsOnCurrentPage.map((item) => (
-                <tr key={item.id}>
+                <tr key={item[0]}>
                   <td className="table--image">
                     <img
-                      src={itemImage(item.icon.replace(/ /g, "_"))}
+                      src={itemImage(item[1].icon.replace(/ /g, "_"))}
                       alt=" "
                     />
                   </td>
                   <td>
                     <Link
-                      key={item.id}
-                      to={"/Item/" + item.id}
-                      state={{ data: item }}
+                      key={item[0]}
+                      to={"/Item/" + item[0]}
+                      state={{ data: item[1] }}
                     >
-                      {item.name}
+                      {item[1].name}
                     </Link>
                     <button
                       className="favourites--button"
-                      onClick={() => setLocalValues(removeFavourite(item.id))}
+                      onClick={() => setLocalValues(removeFavourite(item[0]))}
                     >
                       {unfavIcon}
                     </button>
                   </td>
-                  <td></td>
-                  <td></td>
+                  <td className="table--high--number">
+                    {item[1][1].high.toLocaleString()}
+                  </td>
+                  <td className="table--low--number">
+                    {item[1][1].low.toLocaleString()}
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={4}>
+                <td className="no--favourites--text" colSpan={4}>
                   {" "}
-                  You haven't set any favourites. You can do so on our{" "}
+                  You haven't set any favourites. You can do so on our
                   <Link className="no--favourites--link" to="/ItemList">
                     Items
                   </Link>{" "}

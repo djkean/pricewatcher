@@ -7,8 +7,8 @@ export function Navbar() {
       <Link className="nav--title" to="/">
         OSRS PriceWatcher
       </Link>
-      <span className="nav--search">
-        <Link className="nav--link--home" to="/">
+      <span className="nav--links">
+        <Link className="nav--link" to="/">
           Home
         </Link>
         <Link className="nav--link" to="/ItemList">

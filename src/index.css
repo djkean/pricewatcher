@@ -15,6 +15,9 @@
   --tableBackground: #271b0a;
   --highColor: #43a846;
   --lowColor: #cc8e31;
+  --tableHover: #383124;
+  --tableLinkHover: #fdcb8a;
+  --removeHover: #be3025;
 }
 
 #root {
@@ -40,18 +43,11 @@ nav {
   text-decoration: none;
 }
 
-.nav--search {
+.nav--links {
   display: flex;
-  flex-direction: row;
   font-size: 1.25em;
   color: var(--baseText);
   padding: 0.6em;
-}
-
-.nav--search-field {
-  margin-left: 0.2em;
-  font-weight: bold;
-  color: var(--fieldText);
 }
 
 .graph--title {
@@ -104,24 +100,8 @@ nav {
   color: var(--hoverFooterLink);
 }
 
-.nav--link--home {
-  text-decoration: none;
-}
-
-.nav--link--home:link {
-  color: var(--baseText);
-}
-
-.nav--link--home:visited {
-  color: var(--baseText);
-}
-
-.nav--link--home:hover {
-  color: var(--navHoverLink);
-}
-
 .nav--link {
-  margin-left: 3.5em;
+  margin-right: 3.5em;
   text-decoration: none;
 }
 
@@ -139,8 +119,8 @@ nav {
 
 .table--page {
   margin: 0 auto;
-  max-width: 800px;
-  width: min(800px, 100%);
+  max-width: 50em;
+  width: min(50em, 100%);
 }
 
 .table--image {
@@ -150,7 +130,7 @@ nav {
 }
 
 .table--name {
-  max-width: 200px;
+  max-width: 12.5em;
   font-size: 110%;
 }
 
@@ -175,10 +155,15 @@ nav {
   font-size: 105%;
 }
 
+.itemlist--table tr:hover td {
+  background-color: var(--tableHover);
+}
+
 .itemlist--table tbody tr td a:hover {
-  color: var(--navHoverLink);
+  color: var(--tableLinkHover);
   text-decoration: none;
 }
+
 
 .itemlist--table tbody tr td{
   background-color: var(--baseBackground);
@@ -204,7 +189,7 @@ h2 {
 #home--about{
   padding-top: 1.5em;
   margin: auto;
-  max-width: 800px;
+  max-width: 50em;
   font-size: 125%;
 }
 
@@ -245,7 +230,11 @@ h2 {
 }
 
 .item--stats {
-  padding:1em;
+  display: flex;
+  padding: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 1em;
 }
 
 .graph--data {
@@ -257,34 +246,32 @@ h2 {
 
 .item--card {
   background-color: var(--backgroundDark);
-  border: var(--backgroundDark) 4px solid;
-  border-radius: 19px;
-  box-shadow: 5px 5px 5px var(--fieldText);
+  border: var(--backgroundDark) 0.25em solid;
+  border-radius: 1.18em;
+  box-shadow: 0.3125em 0.3125em 0.3125em var(--fieldText);
   margin: auto;
-  width: 600px;
+  min-width: 40.625em;
+  width: 60%;
 }
 
 .pricegraph--card {
   background-color: var(--backgroundDark);
-  border: var(--backgroundDark) 4px solid;
-  border-radius: 19px;
+  border: var(--backgroundDark) 0.25em solid;
+  border-radius: 1.18em;
   margin: auto;
-  width: 1000px;
-  box-shadow: 5px 5px 5px var(--fieldText);
-}
-
-.card--break {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  min-width: 62.5em;
+  width: 70%;
+  box-shadow: 0.3125em 0.3125em 0.3125em var(--fieldText);
 }
 
 .volumegraph--card {
   background-color: var(--backgroundDark);
-  border: var(--backgroundDark) 4px solid;
-  border-radius: 19px;
+  border: var(--backgroundDark) 0.25em solid;
+  border-radius: 1.18em;
   margin: auto;
-  width: 1000px;
-  box-shadow: 5px 5px 5px var(--fieldText);
+  min-width: 62.5em;
+  width: 70%;
+  box-shadow: 0.3125em 0.3125em 0.3125em var(--fieldText);
 }
 
 .favourites--title {
@@ -298,26 +285,6 @@ h2 {
 .stats--break {
   align-items: center;
   width: 1.5em;
-}
-
-.item--stats > div {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.item--stats > div > div {
-  width: calc(100% - 1.5em);
-}
-
-.item--stats table {
-  margin: 0 auto;
-  border-spacing: 0.5em;
-}
-
-.item--stats td {
-  text-align: left;
 }
 
 .page--current--top {
@@ -346,30 +313,55 @@ h2 {
 .button--page:disabled {
   color: var(--navHoverLink);
   background-color: var(--baseBackground);
-  border: solid 2px var(--backgroundDark);
+  border: solid 0.125em var(--backgroundDark);
 }
 
 .favourites--button {
   text-align: right;
   float: right;
   background-color: var(--backgroundDark);
-  border: solid 1px black;
-  border-radius: 20px;
+  border: solid 0.125em black;
+  border-radius: 1.25em;
   padding: 0.35em 0.35em 0.2em 0.35em;
   margin-top: 0.12em;
 }
 
+.favourites--button g g path {
+  fill: var(--navHoverLink);
+}
+
+.favourites--button:hover g g path:nth-child(2) {
+  fill:var(--highColor);
+}
+
+.favourites--button--add:hover .button--svg {
+  fill: var(--highColor);
+}
+
+.favourites--button--remove g g path {
+  fill: var(--highColor);
+}
+
+.favourites--button--remove:hover g g path {
+  fill: var(--removeHover);
+}
+
+.favourites--button--remove:hover g g path:nth-child(2) {
+  fill: var(--removeHover);
+}
+
 .favourites--button:hover {
   transform: scale(1.35);
+  cursor: pointer;
 }
 
 .itemlist--search--field {
   color: var(--fieldText);
   height: 2.8em;
-  width: 30em;
+  width: 32em;
   margin-bottom: 2em;
-  border-radius: 5px;
-  border: solid 2px var(--backgroundDark);
+  border-radius: 0.55em;
+  border: solid 0.125em var(--backgroundDark);
   font-size: 1em;
   padding: 0 0.5em;
   letter-spacing: 0.0625em;
@@ -413,4 +405,28 @@ h2 {
   font-weight: bold;
   color: var(--lowColor);
   font-size: 110%;
+}
+
+.no--favourites--link:link {
+  color: var(--baseFooterLink);
+}
+
+.no--favourites--link:visited {
+  color: var(--baseFooterLink);
+}
+
+.no--favourites--text {
+  text-align: center;
+}
+
+.table--high--number {
+  color: var(--highColor);
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.table--low--number {
+  color: var(--lowColor);
+  font-size: 110%;
+  font-weight: bold;
 }
