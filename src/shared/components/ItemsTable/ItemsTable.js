@@ -69,7 +69,7 @@ export function ItemsTable({ apiResults }) {
       ?.sort((a, b) => a[1].name.localeCompare(b[1].name))
       ?.filter(
         (_, index) =>
-          index <= currentPage * itemsPerPage &&
+          index < currentPage * itemsPerPage &&
           index >= (currentPage - 1) * itemsPerPage
       );
     return itemsOnPageMemo;

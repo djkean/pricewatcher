@@ -10,10 +10,19 @@ import {
 } from "recharts";
 
 export function PriceGraph(props) {
-  const { priceGraphData } = props;
+  const { priceGraphData, priceRange } = props;
   priceGraphData?.forEach((changeTime) => {
     changeTime.date = convertTime(changeTime?.timestamp);
   });
+  const lowRange =
+    priceRange?.lowPrice?.avgLowPrice <= 10
+      ? Math.max(priceRange?.lowPrice.avgLowPrice - 1, 0)
+      : priceRange?.lowPrice?.avgLowPrice * 0.9;
+  const highPriceLimit = Math.ceil(
+    priceRange?.oldestHighPrice?.avgHighPrice * 1.05
+  );
+  const highRange = highPriceLimit >= 2147483647 ? 2147483647 : highPriceLimit;
+
   return (
     <>
       <div className="pricegraph--card">
@@ -37,6 +46,7 @@ export function PriceGraph(props) {
               tick={<CustomizedAxisTick offset={16} />}
             />
             <YAxis
+              domain={[Math.round(lowRange), Math.round(highRange)]}
               axisLine={{ stroke: "#ffebcd" }}
               tick={<CustomizedAxisTick offset={2} />}
               width={105}

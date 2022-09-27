@@ -29,7 +29,7 @@ export function FavouritesTable() {
       ?.sort((a, b) => a[1].name.localeCompare(b[1].name))
       ?.filter(
         (_, index) =>
-          index <= currentPage * itemsPerPage &&
+          index < currentPage * itemsPerPage &&
           index >= (currentPage - 1) * itemsPerPage
       ) ?? 0;
 

@@ -326,19 +326,33 @@ h2 {
   margin-top: 0.12em;
 }
 
+.table--high--number {
+  color: var(--highColor);
+  font-weight: bold;
+}
+
+.table--low--number {
+  color: var(--lowColor);
+  font-weight: bold;
+}
+
 .favourites--button g g path {
   fill: var(--navHoverLink);
+}
+
+.favourites--button--remove g g path {
+  fill: var(--highColor); 
 }
 
 .favourites--button:hover g g path:nth-child(2) {
   fill:var(--highColor);
 }
 
-.favourites--button--add:hover .button--svg {
-  fill: var(--highColor);
+.favourites--button--remove:hover g g path:nth-child(2) {
+  fill: var(--removeHover);
 }
 
-.favourites--button--remove g g path {
+.favourites--button--add:hover .button--svg {
   fill: var(--highColor);
 }
 
@@ -346,12 +360,8 @@ h2 {
   fill: var(--removeHover);
 }
 
-.favourites--button--remove:hover g g path:nth-child(2) {
-  fill: var(--removeHover);
-}
-
 .favourites--button:hover {
-  transform: scale(1.35);
+  transform: scale(1.20);
   cursor: pointer;
 }
 
@@ -417,14 +427,4 @@ h2 {
 
 .no--favourites--text {
   text-align: center;
-}
-
-.table--high--number {
-  color: var(--highColor);
-  font-weight: bold;
-}
-
-.table--low--number {
-  color: var(--lowColor);
-  font-weight: bold;
 }
