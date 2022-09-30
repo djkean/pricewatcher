@@ -130,13 +130,14 @@ nav {
 }
 
 .table--name {
-  max-width: 12.5em;
+  max-width: 200px;
   font-size: 110%;
 }
 
 .itemlist--table {
   margin: auto;
   width: 100%;
+  max-width: 50em;
   color: var(--baseText);
   border: solid black 0.125em;
   background-color: var(--tableBackground);
@@ -159,11 +160,14 @@ nav {
   background-color: var(--tableHover);
 }
 
+.itemlist--table tr:hover .favourites--button--add {
+  visibility: visible;
+}
+
 .itemlist--table tbody tr td a:hover {
   color: var(--tableLinkHover);
   text-decoration: none;
 }
-
 
 .itemlist--table tbody tr td{
   background-color: var(--baseBackground);
@@ -318,12 +322,20 @@ h2 {
 
 .favourites--button {
   text-align: right;
-  float: right;
   background-color: var(--backgroundDark);
   border: solid 0.125em black;
   border-radius: 1.25em;
   padding: 0.35em 0.35em 0.2em 0.35em;
-  margin-top: 0.12em;
+}
+
+.table--high--price {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.table--low--price {
+  font-weight: bold;
+  font-size: 110%;
 }
 
 .table--high--number {
@@ -334,6 +346,14 @@ h2 {
 .table--low--number {
   color: var(--lowColor);
   font-weight: bold;
+}
+
+.table--name--div {
+  display: flex;
+}
+
+.table--name--div button {
+  margin-left: auto;
 }
 
 .favourites--button g g path {
@@ -358,6 +378,10 @@ h2 {
 
 .favourites--button--remove:hover g g path {
   fill: var(--removeHover);
+}
+
+.favourites--button--add {
+  visibility: hidden;
 }
 
 .favourites--button:hover {
