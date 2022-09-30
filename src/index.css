@@ -329,23 +329,31 @@ h2 {
 }
 
 .table--high--price {
+  text-align: right;
   font-weight: bold;
   font-size: 110%;
+  padding-right: 0.6em;
 }
 
 .table--low--price {
+  text-align: right;
   font-weight: bold;
   font-size: 110%;
+  padding-right: 0.6em;
 }
 
 .table--high--number {
+  text-align: right;
   color: var(--highColor);
   font-weight: bold;
+  padding-right: 0.6em;
 }
 
 .table--low--number {
+  text-align: right;
   color: var(--lowColor);
   font-weight: bold;
+  padding-right: 0.6em;
 }
 
 .table--name--div {
