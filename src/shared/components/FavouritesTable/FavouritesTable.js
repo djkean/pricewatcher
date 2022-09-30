@@ -62,8 +62,8 @@ export function FavouritesTable() {
             <tr>
               <th className="table--image"></th>
               <th className="table--name">Item Name</th>
-              <th>High Price</th>
-              <th>Low Price</th>
+              <th className="table--high--price">High Price</th>
+              <th className="table--low--price">Low Price</th>
             </tr>
           </thead>
           <tbody>
@@ -77,19 +77,21 @@ export function FavouritesTable() {
                     />
                   </td>
                   <td>
-                    <Link
-                      key={item[0]}
-                      to={"/Item/" + item[0]}
-                      state={{ data: item[1] }}
-                    >
-                      {item[1].name}
-                    </Link>
-                    <button
-                      className="favourites--button"
-                      onClick={() => setLocalValues(removeFavourite(item[0]))}
-                    >
-                      {unfavIcon}
-                    </button>
+                    <div className="table--name--div">
+                      <Link
+                        key={item[0]}
+                        to={"/Item/" + item[0]}
+                        state={{ data: item[1] }}
+                      >
+                        {item[1].name}
+                      </Link>
+                      <button
+                        className="favourites--button"
+                        onClick={() => setLocalValues(removeFavourite(item[0]))}
+                      >
+                        {unfavIcon}
+                      </button>
+                    </div>
                   </td>
                   <td className="table--high--number">
                     {item[1][1].high.toLocaleString()}
