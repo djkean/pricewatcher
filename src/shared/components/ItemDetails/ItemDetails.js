@@ -38,6 +38,32 @@ export function ItemDetails() {
               )
           )[0];
 
+          const highestHighPrice = itemPriceData?.data.filter(
+            (__) =>
+              __.avgHighPrice ===
+              Math.max(
+                ...itemPriceData?.data.map(
+                  (highestFoundPrice) => highestFoundPrice.avgHighPrice
+                )
+              )
+          )[0];
+
+          const lowestLowArray = itemPriceData?.data.filter(
+            (__) => __.avgLowPrice
+          );
+
+          let lowestLowArray2 = [];
+
+          for (let z = 0; z < lowestLowArray.length; z++) {
+            lowestLowArray2[z] = lowestLowArray[z].avgLowPrice;
+          }
+
+          const lowestLowPrice = itemPriceData?.data.filter(
+            (lowestFilter) =>
+              lowestFilter?.avgLowPrice &&
+              lowestFilter.avgLowPrice === Math.min(...lowestLowArray2)
+          )[0];
+
           const oldestLowPrice = itemPriceData?.data.filter(
             (price) => price.avgLowPrice
           )[0];
@@ -45,6 +71,11 @@ export function ItemDetails() {
           const oldestHighPrice = itemPriceData?.data
             .filter((priceFilter) => priceFilter.avgHighPrice)
             .sort((a, b) => a.timestamp < b.timestamp)[0];
+
+          console.log(
+            lowestLowPrice.avgLowPrice,
+            highestHighPrice.avgHighPrice
+          );
 
           setApiResults((apiResults) => ({
             ...apiResults,
@@ -58,6 +89,8 @@ export function ItemDetails() {
               highPrice: latestHighPrice,
               oldestLowPrice: oldestLowPrice,
               oldestHighPrice: oldestHighPrice,
+              highestHighPrice: highestHighPrice,
+              lowestLowPrice: lowestLowPrice,
             },
           }));
         });

@@ -14,14 +14,50 @@ export function PriceGraph(props) {
   priceGraphData?.forEach((changeTime) => {
     changeTime.date = convertTime(changeTime?.timestamp);
   });
-  const lowRange =
+
+  const numDigitsLow = Math.floor(
+    Math.log(priceRange?.lowestLowPrice?.avgLowPrice) * Math.LOG10E + 1
+  );
+
+  const numDigitsHigh = Math.ceil(
+    Math.log(priceRange?.highestHighPrice?.avgHighPrice) * Math.LOG10E + 1
+  );
+
+  const range =
+    priceRange?.highestHighPrice?.avgHighPrice -
+    priceRange?.lowestLowPrice?.avgLowPrice;
+
+  const rangeMargin = Math.round(
+    Math.log10(Math.round(priceRange?.highPrice?.avgHighPrice / range)) + 1
+  );
+
+  const lowRange = priceRange?.lowestLowPrice?.avgLowPrice - range / 2;
+
+  const highRange = priceRange?.highestHighPrice?.avgHighPrice + range / 2;
+
+  /*const highPriceLimit =
+    Math.ceil(
+      (priceRange?.highPrice?.avgHighPrice * 1.1) /
+        Math.pow(10, numDigitsHigh - rangeMargin)
+    ) * Math.pow(10, numDigitsHigh - rangeMargin);
+*/
+  /* const highRange = highPriceLimit >= 2147483647 ? 2147483647 : highPriceLimit;
+  console.log(
+    rangeMargin,
+    priceRange?.highPrice?.avgHighPrice,
+    priceRange?.lowPrice?.avgLowPrice,
+    lowRange,
+    highRange
+  ); */
+
+  /* const lowRange =
     priceRange?.lowPrice?.avgLowPrice <= 10
       ? Math.max(priceRange?.lowPrice.avgLowPrice - 1, 0)
-      : priceRange?.lowPrice?.avgLowPrice * 0.9;
-  const highPriceLimit = Math.ceil(
-    priceRange?.oldestHighPrice?.avgHighPrice * 1.05
-  );
-  const highRange = highPriceLimit >= 2147483647 ? 2147483647 : highPriceLimit;
+      : Math.round(
+          (priceRange?.lowPrice?.avgLowPrice * 0.9) /
+            Math.pow(10, numDigitsLow - rangeMargin)
+        ) * Math.pow(10, numDigitsLow - rangeMargin);
+*/
 
   return (
     <>
