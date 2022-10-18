@@ -7,11 +7,11 @@ import {
 export const useFetchApi = () => {
   const [api, setApi] = useState([]);
 
-  const fetchCatalogue = async () => {
-    return await fetch(catalogueAPI)
+  const fetchCatalogue = () => {
+    fetch(catalogueAPI)
       .then((response) => response.json())
-      .then(async (items) => {
-        await fetch(itemPriceAPI)
+      .then((items) => {
+        fetch(itemPriceAPI)
           .then((priceJSON) => priceJSON.json())
           .then((priceResponse) => {
             const itemArray = Object.keys(priceResponse.data).map((key) => [

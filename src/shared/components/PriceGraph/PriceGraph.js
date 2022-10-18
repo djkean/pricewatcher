@@ -86,6 +86,7 @@ export function PriceGraph(props) {
               axisLine={{ stroke: "#ffebcd" }}
               tick={<CustomizedAxisTick offset={2} />}
               width={105}
+              tickCount={7}
             />
             <Tooltip
               contentStyle={{
