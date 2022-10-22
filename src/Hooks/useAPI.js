@@ -48,6 +48,7 @@ export const useFetchApi = () => {
                   },
                 }));
               }
+              return api;
             });
           });
       });
