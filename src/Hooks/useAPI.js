@@ -16,12 +16,11 @@ export const useFetchApi = () => {
           localStorage.setItem("localCatalogue", JSON.stringify(data));
           setLocalApi(data);
           console.log(data);
-          console.log(localApi);
           console.log(JSON.parse(localStorage.getItem("localCatalogue")));
         })
       );
     } else {
-      return;
+      return localCatalogue;
     }
   };
 
@@ -53,6 +52,7 @@ export const useFetchApi = () => {
           });
       });
     console.log(localCatalogue);
+    console.log(localApi);
   };
 
   useEffect(() => {
