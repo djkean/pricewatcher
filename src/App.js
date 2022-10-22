@@ -12,7 +12,7 @@ export function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/pricewatcher" element={<HomePage />} />
         <Route path="/ItemList" element={<ItemListPage />} />
         <Route path="/Item/:id" element={<ItemDetails />} />
         <Route path="/Favourites" element={<FavouritesTable />} />

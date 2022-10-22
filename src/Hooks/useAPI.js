@@ -6,6 +6,24 @@ import {
 
 export const useFetchApi = () => {
   const [api, setApi] = useState([]);
+  const [localApi, setLocalApi] = useState([]);
+  const localCatalogue = JSON.parse(localStorage.getItem("localCatalogue"));
+
+  const checkForLocalApi = () => {
+    if (!localCatalogue) {
+      fetch(catalogueAPI).then((response) =>
+        response.json().then((data) => {
+          localStorage.setItem("localCatalogue", JSON.stringify(data));
+          setLocalApi(data);
+          console.log(data);
+          console.log(localApi);
+          console.log(JSON.parse(localStorage.getItem("localCatalogue")));
+        })
+      );
+    } else {
+      return;
+    }
+  };
 
   const fetchCatalogue = () => {
     fetch(catalogueAPI)
@@ -34,9 +52,11 @@ export const useFetchApi = () => {
             });
           });
       });
+    console.log(localCatalogue);
   };
 
   useEffect(() => {
+    checkForLocalApi();
     fetchCatalogue();
   }, []);
 
