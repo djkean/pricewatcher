@@ -6,9 +6,11 @@ import {
 
 export const useFetchApi = () => {
   const [api, setApi] = useState([]);
-  const checkForLocalApi2 = async (localCatalogue) => {
-    if (localCatalogue) {
-      return localCatalogue;
+
+  const checkForLocalApi2 = async () => {
+    const localCatalogue = localStorage.getItem("localCatalogue");
+    if (localCatalogue != null) {
+      return JSON.parse(localCatalogue);
     } else {
       const itemDetailResponse = await fetch(catalogueAPI);
       const itemDetailJSON = await itemDetailResponse.json();
@@ -18,8 +20,7 @@ export const useFetchApi = () => {
   };
 
   const fetchCatalogue2 = async () => {
-    let localCatalogue;
-    localCatalogue = await checkForLocalApi2(localCatalogue);
+    const localCatalogue = await checkForLocalApi2();
     const itemPriceResponse = await fetch(itemPriceAPI);
     const itemPriceJSON = await itemPriceResponse.json();
     const itemArray = Object.keys(itemPriceJSON.data).map((key) => [
