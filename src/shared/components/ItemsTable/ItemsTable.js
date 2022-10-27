@@ -59,7 +59,6 @@ export function ItemsTable({ apiResults }) {
     setCurrentPage(1);
     return getMatchingItems(searchValue);
   };
-
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;

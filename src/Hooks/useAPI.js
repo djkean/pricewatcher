@@ -6,31 +6,26 @@ import {
 
 export const useFetchApi = () => {
   const [api, setApi] = useState([]);
-  let localCatalogue = JSON.parse(localStorage.getItem("localCatalogue"));
-
-  // console.log(localCatalogue);
-  const checkForLocalApi2 = async () => {
-    if (!localCatalogue) {
+  const checkForLocalApi2 = async (localCatalogue) => {
+    if (localCatalogue) {
+      return localCatalogue;
+    } else {
       const itemDetailResponse = await fetch(catalogueAPI);
       const itemDetailJSON = await itemDetailResponse.json();
       localStorage.setItem("localCatalogue", JSON.stringify(itemDetailJSON));
-      localCatalogue = JSON.parse(localStorage.getItem("localCatalogue"));
-      // console.log(itemDetailJSON);
-      // console.log(JSON.parse(localStorage.getItem("localCatalogue")));
-      // console.log(localCatalogue);
-      return;
+      return JSON.parse(localStorage.getItem("localCatalogue"));
     }
   };
 
   const fetchCatalogue2 = async () => {
-    await checkForLocalApi2();
+    let localCatalogue;
+    localCatalogue = await checkForLocalApi2(localCatalogue);
     const itemPriceResponse = await fetch(itemPriceAPI);
     const itemPriceJSON = await itemPriceResponse.json();
     const itemArray = Object.keys(itemPriceJSON.data).map((key) => [
       Number(key),
       itemPriceJSON.data[key],
     ]);
-    // console.log(localCatalogue, "hi");
     localCatalogue.map((item) => {
       const latestPriceData = itemArray.filter(
         (matchingID) => matchingID[0] === item.id
@@ -44,13 +39,11 @@ export const useFetchApi = () => {
           },
         }));
       }
-      return api;
     });
-    //console.log(localCatalogue);
+    return console.log("test");
   };
 
   useEffect(() => {
-    //checkForLocalApi2();
     fetchCatalogue2();
   }, []);
 
