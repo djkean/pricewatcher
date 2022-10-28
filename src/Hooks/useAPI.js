@@ -4,30 +4,30 @@ import {
   itemPriceAPI,
 } from "../shared/components/ItemList/ItemList";
 
-export const useFetchApi = () => {
+export const useFetchItemStats = () => {
   const [api, setApi] = useState([]);
 
-  const checkForLocalApi2 = async () => {
-    const localCatalogue = localStorage.getItem("localCatalogue");
-    if (localCatalogue != null) {
-      return JSON.parse(localCatalogue);
+  const checkLocalStorageForAPI = async () => {
+    const localItemInfo = localStorage.getItem("localItemInfo");
+    if (localItemInfo != null) {
+      return JSON.parse(localItemInfo);
     } else {
-      const itemDetailResponse = await fetch(catalogueAPI);
-      const itemDetailJSON = await itemDetailResponse.json();
-      localStorage.setItem("localCatalogue", JSON.stringify(itemDetailJSON));
-      return JSON.parse(localStorage.getItem("localCatalogue"));
+      const ItemInfoResponse = await fetch(catalogueAPI);
+      const ItemInfoJSON = await ItemInfoResponse.json();
+      localStorage.setItem("localItemInfo", JSON.stringify(ItemInfoJSON));
+      return JSON.parse(localStorage.getItem("localItemInfo"));
     }
   };
 
-  const fetchCatalogue2 = async () => {
-    const localCatalogue = await checkForLocalApi2();
-    const itemPriceResponse = await fetch(itemPriceAPI);
-    const itemPriceJSON = await itemPriceResponse.json();
+  const mergePriceData = async () => {
+    const localItemInfo = await checkLocalStorageForAPI();
+    const ItemPriceResponse = await fetch(itemPriceAPI);
+    const itemPriceJSON = await ItemPriceResponse.json();
     const itemArray = Object.keys(itemPriceJSON.data).map((key) => [
       Number(key),
       itemPriceJSON.data[key],
     ]);
-    localCatalogue.map((item) => {
+    localItemInfo.map((item) => {
       const latestPriceData = itemArray.filter(
         (matchingID) => matchingID[0] === item.id
       )[0];
@@ -45,7 +45,7 @@ export const useFetchApi = () => {
   };
 
   useEffect(() => {
-    fetchCatalogue2();
+    mergePriceData();
   }, []);
 
   return api;
