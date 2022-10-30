@@ -72,11 +72,6 @@ export function ItemDetails() {
             .filter((priceFilter) => priceFilter.avgHighPrice)
             .sort((a, b) => a.timestamp < b.timestamp)[0];
 
-          console.log(
-            lowestLowPrice.avgLowPrice,
-            highestHighPrice.avgHighPrice
-          );
-
           setApiResults((apiResults) => ({
             ...apiResults,
             volumeData: itemPriceData?.data.filter(
@@ -102,6 +97,7 @@ export function ItemDetails() {
   useEffect(() => {
     fetchExchangeData();
   }, []);
+
   return (
     <article className="item">
       <div className="item--card">

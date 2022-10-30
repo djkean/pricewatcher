@@ -6,19 +6,20 @@ import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { favIcon } from "../images/addFavourite";
 import { alreadyFavIcon } from "../images/alreadyFavourite";
 import { removeFavourite } from "../FavouritesTable/FavouritesTable";
+import { useFetchItemStats } from "../../../Hooks/useAPI";
 
-const addFavourite = (item) => {
+const addFavourite = (itemData) => {
   let tempStorage = [];
   if (localStorage.getItem("favourites") === null) {
-    tempStorage.push(item);
+    tempStorage.push(itemData);
     return tempStorage;
   }
   tempStorage = JSON.parse(localStorage.getItem("favourites"));
-  const checkForDuplicates = tempStorage.filter(
-    (favItem) => favItem[0] === item[0]
+  const checkForDuplicates = Object.values(tempStorage).filter(
+    (favItem) => favItem.id === itemData.id
   ).length;
   if (checkForDuplicates === 0) {
-    tempStorage.push(item);
+    tempStorage.push(itemData);
   }
   return tempStorage;
 };
@@ -26,10 +27,11 @@ const addFavourite = (item) => {
 export const checkIfFavourite = (id) => {
   const favList = JSON.parse(localStorage.getItem("favourites"));
   if (favList === null) return false;
-  return favList.filter((checkID) => checkID[0] === id).length;
+  return Object.values(favList).filter((checkID) => checkID.id === id).length;
 };
 
-export function ItemsTable({ apiResults }) {
+export function ItemsTable() {
+  const itemStatsResults = useFetchItemStats();
   const [localValues, setLocalValues] = useLocalStorage(
     "favourites",
     localStorage.getItem("favourites")
@@ -38,19 +40,13 @@ export function ItemsTable({ apiResults }) {
   const [catalogueItems, setCatalogueItems] = useState([]);
   const [matchingItems, setMatchingItems] = useState([]);
   useEffect(() => {
-    const itemArray = Object.keys(apiResults).map((key) => [
-      Number(key),
-      apiResults[key],
-    ]);
-    setCatalogueItems(itemArray);
-    setMatchingItems(itemArray);
-  }, [apiResults]);
+    setCatalogueItems(itemStatsResults);
+    setMatchingItems(itemStatsResults);
+  }, [itemStatsResults]);
 
   const getMatchingItems = (searchValue) => {
-    const filteredItems = catalogueItems.filter(
-      (catalogueItem) =>
-        catalogueItem[1].name.toLowerCase().indexOf(searchValue.toLowerCase()) >
-        -1
+    const filteredItems = Object.values(catalogueItems).filter(
+      (key) => key.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
     );
     setMatchingItems(filteredItems);
   };
@@ -62,10 +58,14 @@ export function ItemsTable({ apiResults }) {
   const previousPage = currentPage - 1;
   const progressPage = currentPage + 1;
   const itemsPerPage = 50;
-  const totalPages = Math.ceil(matchingItems.length / itemsPerPage);
+  const totalPages = Math.ceil(
+    Object.keys(matchingItems).length / itemsPerPage
+  );
   const itemsOnCurrentPage = useMemo(() => {
-    const itemsOnPageMemo = matchingItems
-      ?.sort((a, b) => a[1].name.localeCompare(b[1].name))
+    const itemsOnPageMemo = Object.keys(matchingItems)
+      ?.sort((a, b) =>
+        matchingItems[a].name.localeCompare(matchingItems[b].name)
+      )
       ?.filter(
         (_, index) =>
           index < currentPage * itemsPerPage &&
@@ -107,7 +107,7 @@ export function ItemsTable({ apiResults }) {
       </section>
       <section className="itemlist--count">
         <span className="itemlist--number">
-          {matchingItems.length.toLocaleString()}
+          {Object.keys(matchingItems).length.toLocaleString()}
         </span>{" "}
         items matched your search.
       </section>
@@ -139,46 +139,50 @@ export function ItemsTable({ apiResults }) {
         </thead>
         <tbody>
           {itemsOnCurrentPage.map((item) => {
-            const favButton = checkIfFavourite(item[0]) ? (
+            const favButton = checkIfFavourite(matchingItems[item].id) ? (
               <button
                 className="favourites--button favourites--button--remove"
-                onClick={() => setLocalValues(removeFavourite(item[0]))}
+                onClick={() =>
+                  setLocalValues(removeFavourite(matchingItems[item].id))
+                }
               >
                 {alreadyFavIcon}
               </button>
             ) : (
               <button
                 className="favourites--button favourites--button--add"
-                onClick={() => setLocalValues(addFavourite(item))}
+                onClick={() =>
+                  setLocalValues(addFavourite(matchingItems[item]))
+                }
               >
                 {favIcon}
               </button>
             );
             return (
-              <tr key={item[0]}>
+              <tr key={item}>
                 <td className="table--image">
                   <img
-                    src={itemImage(item[1].icon.replace(/ /g, "_"))}
+                    src={itemImage(matchingItems[item].icon.replace(/ /g, "_"))}
                     alt=" "
                   />
                 </td>
                 <td>
                   <div className="table--name--div">
                     <Link
-                      key={item[0]}
-                      to={"/Item/" + item[0]}
-                      state={{ data: item[1] }}
+                      key={item}
+                      to={"/Item/" + matchingItems[item].id}
+                      state={{ data: matchingItems[item] }}
                     >
-                      {item[1].name}
+                      {matchingItems[item].name}
                     </Link>
                     {favButton}
                   </div>
                 </td>
                 <td className="table--high--number">
-                  {item[1][1].high.toLocaleString()}
+                  {matchingItems[item][1].high.toLocaleString()}
                 </td>
                 <td className="table--low--number">
-                  {item[1][1].low.toLocaleString()}
+                  {matchingItems[item][1].low.toLocaleString()}
                 </td>
               </tr>
             );

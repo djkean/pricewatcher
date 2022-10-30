@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-import {
-  catalogueAPI,
-  itemPriceAPI,
-} from "../shared/components/ItemList/ItemList";
+import { catalogueAPI, itemPriceAPI } from "../API/API";
 
 export const useFetchItemStats = () => {
   const [api, setApi] = useState([]);
 
-  const checkLocalStorageForAPI = async () => {
+  const getLocalCatalogueData = async () => {
     const localItemInfo = localStorage.getItem("localItemInfo");
     if (localItemInfo != null) {
       return JSON.parse(localItemInfo);
@@ -15,12 +12,12 @@ export const useFetchItemStats = () => {
       const ItemInfoResponse = await fetch(catalogueAPI);
       const ItemInfoJSON = await ItemInfoResponse.json();
       localStorage.setItem("localItemInfo", JSON.stringify(ItemInfoJSON));
-      return JSON.parse(localStorage.getItem("localItemInfo"));
+      return ItemInfoJSON;
     }
   };
 
   const mergePriceData = async () => {
-    const localItemInfo = await checkLocalStorageForAPI();
+    const localItemInfo = await getLocalCatalogueData();
     const ItemPriceResponse = await fetch(itemPriceAPI);
     const itemPriceJSON = await ItemPriceResponse.json();
     const itemArray = Object.keys(itemPriceJSON.data).map((key) => [
@@ -41,7 +38,7 @@ export const useFetchItemStats = () => {
         }));
       }
     });
-    return console.log("test");
+    return;
   };
 
   useEffect(() => {

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { itemImage } from "../ItemList/ItemList";
+import { itemImage } from "../../../API/API";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { unfavIcon } from "../images/removeFavourite";
 
 export const removeFavourite = (id) => {
   const favList = JSON.parse(localStorage.getItem("favourites"));
   if (favList === null) return;
-  const updatedFavourites = favList.filter((checkID) => checkID[0] !== id);
+  const updatedFavourites = favList.filter((checkID) => checkID.id !== id);
   return updatedFavourites;
 };
 
@@ -24,9 +24,10 @@ export function FavouritesTable() {
   const totalPages = localValues?.length
     ? Math.ceil(localValues?.length / itemsPerPage)
     : 1;
+
   const itemsOnCurrentPage =
-    localValues
-      ?.sort((a, b) => a[1]?.name?.localeCompare(b[1]?.name))
+    Object.keys(localValues)
+      ?.sort((a, b) => localValues[a].name.localeCompare(localValues[b].name))
       ?.filter(
         (_, index) =>
           index < currentPage * itemsPerPage &&
@@ -69,35 +70,37 @@ export function FavouritesTable() {
           <tbody>
             {itemsOnCurrentPage.length > 0 ? (
               itemsOnCurrentPage.map((item) => (
-                <tr key={item[0]}>
+                <tr key={localValues[item].id}>
                   <td className="table--image">
                     <img
-                      src={itemImage(item[1].icon.replace(/ /g, "_"))}
+                      src={itemImage(localValues[item].icon.replace(/ /g, "_"))}
                       alt=" "
                     />
                   </td>
                   <td>
                     <div className="table--name--div">
                       <Link
-                        key={item[0]}
-                        to={"/Item/" + item[0]}
-                        state={{ data: item[1] }}
+                        key={localValues[item].id}
+                        to={"/Item/" + localValues[item].id}
+                        state={{ data: localValues[item] }}
                       >
-                        {item[1].name}
+                        {localValues[item].name}
                       </Link>
                       <button
                         className="favourites--button"
-                        onClick={() => setLocalValues(removeFavourite(item[0]))}
+                        onClick={() =>
+                          setLocalValues(removeFavourite(localValues[item].id))
+                        }
                       >
                         {unfavIcon}
                       </button>
                     </div>
                   </td>
                   <td className="table--high--number">
-                    {item[1][1].high.toLocaleString()}
+                    {localValues[item][1].high.toLocaleString()}
                   </td>
                   <td className="table--low--number">
-                    {item[1][1].low.toLocaleString()}
+                    {localValues[item][1].low.toLocaleString()}
                   </td>
                 </tr>
               ))
