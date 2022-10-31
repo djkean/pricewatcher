@@ -5,7 +5,9 @@ import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import { unfavIcon } from "../images/removeFavourite";
 
 export const removeFavourite = (id) => {
-  const favList = JSON.parse(localStorage.getItem("favourites"));
+  const favList = JSON.parse(
+    localStorage.getItem("osrs-pricewatcher-favourites-01")
+  );
   if (favList === null) return;
   const updatedFavourites = favList.filter((checkID) => checkID.id !== id);
   return updatedFavourites;
@@ -14,8 +16,8 @@ export const removeFavourite = (id) => {
 export function FavouritesTable() {
   const [currentPage, setCurrentPage] = useState(1);
   const [localValues, setLocalValues] = useLocalStorage(
-    "favourites",
-    localStorage.getItem("favourites")
+    "osrs-pricewatcher-favourites-01",
+    localStorage.getItem("osrs-pricewatcher-favourites-01")
   );
 
   const previousPage = currentPage - 1;
@@ -24,7 +26,7 @@ export function FavouritesTable() {
   const totalPages = localValues?.length
     ? Math.ceil(localValues?.length / itemsPerPage)
     : 1;
-
+  console.log(localValues);
   const itemsOnCurrentPage =
     Object.keys(localValues)
       ?.sort((a, b) => localValues[a].name.localeCompare(localValues[b].name))
@@ -33,6 +35,7 @@ export function FavouritesTable() {
           index < currentPage * itemsPerPage &&
           index >= (currentPage - 1) * itemsPerPage
       ) ?? 0;
+  console.log(localValues);
 
   return (
     <div className="page">

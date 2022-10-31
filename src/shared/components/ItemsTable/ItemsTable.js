@@ -10,11 +10,13 @@ import { useFetchItemStats } from "../../../Hooks/useAPI";
 
 const addFavourite = (itemData) => {
   let tempStorage = [];
-  if (localStorage.getItem("favourites") === null) {
+  if (localStorage.getItem("osrs-pricewatcher-favourites-01") === null) {
     tempStorage.push(itemData);
     return tempStorage;
   }
-  tempStorage = JSON.parse(localStorage.getItem("favourites"));
+  tempStorage = JSON.parse(
+    localStorage.getItem("osrs-pricewatcher-favourites-01")
+  );
   const checkForDuplicates = Object.values(tempStorage).filter(
     (favItem) => favItem.id === itemData.id
   ).length;
@@ -25,7 +27,9 @@ const addFavourite = (itemData) => {
 };
 
 export const checkIfFavourite = (id) => {
-  const favList = JSON.parse(localStorage.getItem("favourites"));
+  const favList = JSON.parse(
+    localStorage.getItem("osrs-pricewatcher-favourites-01")
+  );
   if (favList === null) return false;
   return Object.values(favList).filter((checkID) => checkID.id === id).length;
 };
@@ -33,8 +37,8 @@ export const checkIfFavourite = (id) => {
 export function ItemsTable() {
   const itemStatsResults = useFetchItemStats();
   const [localValues, setLocalValues] = useLocalStorage(
-    "favourites",
-    localStorage.getItem("favourites")
+    "osrs-pricewatcher-favourites-01",
+    localStorage.getItem("osrs-pricewatcher-favourites-01")
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [catalogueItems, setCatalogueItems] = useState([]);
