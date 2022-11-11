@@ -7,7 +7,11 @@ To use Pricewatcher, visit the Items tab where you can search and browse for any
 
 In the future I look forward to creating a back-end for the project, allowing users to mark target prices for specific items, and create a system that will notify them when that item rises or falls to their marked price. The goal is a quick, intuitive website for people to track trends without needed to commit time playing the game.
 
-This project's React portion is complete, and part of my learning experience with [Get Coding](https://www.get-coding.ca).
+Pricewather's React portion is complete, and part of my learning experience with [Get Coding](https://www.get-coding.ca).
 In the near future I look forward to improving on this project via Node + MySQL.
+
+This project uses: 
+- OldSchool RuneScape's [Real-time Prices API](https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices)
+- [Recharts Graphing Library](https://recharts.org/en-US/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
