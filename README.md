@@ -1,17 +1,18 @@
-# [Pricewatcher](https://djkean.github.io/pricewatcher/)
+# [OldSchool RuneScape Pricewatcher](https://djkean.github.io/pricewatcher/)
 
-Pricewatcher is a project I pursued as a way to learn React a way that tied in to my interests outside of education. It was exciting to create something that myself and others would find practical use for.
-The idea was to create a website to track the price and volume of every item bought/sold on Oldschool Runescape, using a graphing library to display values and trends in a meaningful way.
+Pricewatcher is a tool made to track live prices for all tradeable items in the iconic game, OldSchool Runescape. Using [OldSchool RuneScape Wiki](https://oldschool.runescape.wiki)'s APIs, Any item you can buy or sell is tracked and recorded in 5 minute intervals, with high and low prices or trade volume for each timestamp also recorded and graphed for an easy to understand experience. View any item's trade patterns over the last 24 hours and observe the nuances of live trading in action! 
 
-To use Pricewatcher, visit the Items tab where you can search and browse for any item able to be sold. For more detailed information, select any item to view graphs detailing their recent trends in price and volume. There's also a Favourites tab where you can view all items you've favourited in one place, so you don't need to search up the same items multiple times.
+To use Pricewatcher, head to the Items page and browse thousands of items, or search for a specific item to view notable statistics regarding it's value and trade patterns. If you wish to keep tabs on any specific item(s), make use of the "favourite" system, a way to bookmark multiple items for fast access.
 
-In the future I look forward to creating a back-end for the project, allowing users to mark target prices for specific items, and create a system that will notify them when that item rises or falls to their marked price. The goal is a quick, intuitive website for people to track trends without needed to commit time playing the game.
+The inspiration for Pricewatcher came from the OldSchool Wiki team's own tool, [prices.runescape.wiki](https://prices.runescape.wiki/osrs/). A great and helpful tool for people both interested in the game or, even just statistics and data. It's a tool I've used a lot for many reasons and I wanted to try making my own in order to understand what goes into the process of collecting and interpreting data. This project helped me realize my interest in developing tools that can compliment things we already know and use, with the intent to offer quality of life improvements.
 
-Pricewather's React portion is complete, and part of my learning experience with [Get Coding](https://www.get-coding.ca).
-In the near future I look forward to improving on this project via Node + MySQL.
+The React portion of Pricewatcher is considered complete, though I do have some Node related ideas I'd like to implement should I ever revisit this project in the future. (Opt-in Notifications for notable market changes, new items, etc)
 
-This project uses: 
-- OldSchool RuneScape's [Real-time Prices API](https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices)
-- [Recharts Graphing Library](https://recharts.org/en-US/)
+Resources essential to this project: 
+- OldSchool RuneScape Wiki's [Real-time Prices API](https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices)
+- Recharts' [Graphing Library](https://recharts.org/en-US/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Technologies used for this project:
+- JavaScript (React)
+- HTML
+- CSS
