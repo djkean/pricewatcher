@@ -16,3 +16,14 @@ Technologies used for this project:
 - JavaScript (React)
 - HTML
 - CSS
+
+### Screenshots!
+
+#### Item Page 
+![Screenshot_5](https://github.com/djkean/pricewatcher/assets/95929464/18e54100-f08f-42f9-a13b-50801780162b)
+#### Favouriting System & Page
+![Screenshot_8](https://github.com/djkean/pricewatcher/assets/95929464/cfb223ba-ea41-4c74-8767-68e4cc9830ba)
+#### Buy/Sell Prices
+![Screenshot_17](https://github.com/djkean/pricewatcher/assets/95929464/3aa3b57c-ab63-452c-abd8-2e3182acf456)
+#### Trade Volume
+![Screenshot_18](https://github.com/djkean/pricewatcher/assets/95929464/daa37ca7-e0a0-4eed-bd88-fe3f259252dc)
